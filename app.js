@@ -114,6 +114,7 @@
     "rishikesh-2024": [30.09, 78.27],
     "kanyakumari-2024": [8.09, 77.54],
     "lansdowne-2025": [29.84, 78.69],
+    "chennai-vizag-2025": [13.08, 80.27],
     "hong-kong-2025": [22.3, 114.17],
     "japan-2025": [35.68, 139.76],
     "tirupati-2025": [13.63, 79.42],
@@ -324,6 +325,15 @@
       ["Peenya", 13.029, 77.519, "IN"],
       ["Tirupati", 13.629, 79.419, "IN"],
       ["Tirumala", 13.683, 79.347, "IN"],
+    ],
+    "chennai-vizag-2025": [
+      ["Bengaluru", 12.972, 77.595, "IN"],
+      ["Kannur", 11.874, 75.37, "IN"],
+      ["Chennai", 13.083, 80.275, "IN"],
+      ["Novotel SIPCOT", 12.83, 80.227, "IN"],
+      ["Mahabalipuram", 12.62, 80.192, "IN"],
+      ["Kanchipuram", 12.834, 79.704, "IN"],
+      ["Visakhapatnam", 17.723, 83.323, "IN"],
     ],
     "hong-kong-2025": [
       ["Central", 22.283, 114.154, "HK"],
@@ -1610,7 +1620,7 @@
   function cardHTML(t) {
     const chips = t.places.slice(0, 3);
     const rest = t.places.length - chips.length;
-    const cover = encodeURI(t.href.replace(/index\.html$/i, "") + "cover.jpg");
+    const cover = encodeURI(t.cover || "");
     const scope = tripScope(t);
     return `<a class="trip-card reveal" href="${t.href}" data-status="${t.status}" data-scope="${scope}"
         aria-label="${t.title} — ${scopeLabel(t)}. ${t.when}. ${t.cta}.">
@@ -1666,7 +1676,7 @@
   }
 
   function hangHTML(t) {
-    const cover = encodeURI(t.href.replace(/index\.html$/i, "") + "cover.jpg");
+    const cover = encodeURI(t.cover || "");
     const scope = tripScope(t);
     const roll = scatter(t.id || t.href);
     const frame = FRAME_STOCK[Math.floor(roll(FRAME_STOCK.length))];

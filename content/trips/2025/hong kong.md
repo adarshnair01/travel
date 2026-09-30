@@ -1,0 +1,515 @@
+---
+schema: 1
+id: hong-kong-2025
+year: 2025
+slug: hong kong
+catalog:
+  id: hong-kong-2025
+  scope: international
+  title: Hong Kong & Macau
+  year: 2025
+  status: done
+  when: 4 – 10 September 2025
+  startDate: 2025-09-04
+  endDate: 2025-09-10
+  places:
+    - Central
+    - Kowloon
+    - Disneyland
+    - Lantau
+    - Macau
+  theme: city
+  tagline: Central towers, Kowloon neon, Lantau calm, and Macau across the Pearl River
+  summary: >-
+    Seven dates with Aishwariya: overnight Air India via Delhi, five nights in Central, Hong Kong
+    Island, Kowloon, Disneyland and Lantau — then ferry to Macau and HZMB bus back.
+  stats:
+    - value: "7"
+      label: Days
+    - value: "2"
+      label: SARs
+    - value: "1"
+      label: Macau trip
+  cta: Read the recap
+  short: Hong Kong
+  accentLight: "#b54843"
+  accentDark: "#e08b83"
+  favicon: 🇭🇰
+  documentTitle: Hong Kong & Macau 2025 · Trip recap
+page:
+  documentTitle: Hong Kong & Macau 2025 · Trip recap
+  description: >-
+    Detailed September 2025 Hong Kong itinerary — Central, Kowloon, Disneyland, Lantau and a Macau
+    ferry-out, bus-return day trip.
+  favicon: 🇭🇰
+  accentLight: "#b54843"
+  accentDark: "#e08b83"
+  sidebarName: Hong Kong 2025
+  sidebarWhen: 4 – 10 September
+  crumb: Hong Kong 2025
+  h1Small: Trip recap · September 2025
+  h1Big: Hong Kong
+  caption: Hong Kong & Macau · 2025
+  searchPlaceholder: Search a market, island or ferry… (press /)
+  ctaPrimary: Read the days
+  ctaPrimaryHref: "#days"
+  ctaSecondary: Tickets & stays
+  ctaSecondaryHref: "#tickets"
+  nav:
+    days: The days
+    tickets: Tickets
+    map: Route
+    highlights: Highlights
+    plan: Plan
+  sections:
+    days:
+      kicker: Day by day
+      title: How It Went
+      note: Click any card for the full day · <kbd>←</kbd> <kbd>→</kbd> to move between days
+    tickets:
+      kicker: Already booked
+      title: Tickets & stays
+      note: Four Air India sectors and two stays
+    map:
+      kicker: In sequence
+      title: The Route
+      note: Hover a pin to preview · click to open that day
+    highlights:
+      kicker: What we kept
+      title: The days that stuck
+    plan:
+      kicker: From the notebook
+      title: Notes we actually used
+      note: District pacing, two Lantau days, Macau by ferry and bus
+  legend:
+    - icon: train
+      label: Train
+    - icon: bus
+      label: Road / cab
+    - icon: day
+      label: Day trip (return)
+    - icon: air
+      label: Flight
+    - icon: day
+      label: Ferry
+  cards:
+    tips: Travel notes
+    packing: Packing checklist
+    stays: Nights
+  footerLead: <b>Hong Kong & Macau</b> · Central · Kowloon · Disneyland · Lantau · Macau
+  footerMuted: 4 – 10 September 2025 · with Aishwariya.
+trip:
+  id: hong-kong-2025
+  countdownLabel: until AI 9482 leaves Bengaluru
+  title: Hong Kong & Macau
+  kicker: Trip recap
+  tagline: Central towers, Kowloon neon, Lantau calm, and Macau across the Pearl River
+  startDate: 2025-09-04
+  endDate: 2025-09-10
+  wanderlog: https://wanderlog.com/plan/fvxcbprniaydkudj/trip-to-hong-kong/shared
+  countries:
+    - code: IN
+      name: India
+      flag: 🇮🇳
+    - code: HK
+      name: Hong Kong
+      flag: 🇭🇰
+    - code: MO
+      name: Macau
+      flag: 🇲🇴
+  glance:
+    - icon: clock
+      value: "7"
+      label: Calendar days
+    - icon: town
+      value: "2"
+      label: SARs
+    - icon: plane
+      value: "4"
+      label: Flights
+    - icon: boat
+      value: "2"
+      label: Harbour crossings
+  highlights:
+    - icon: mountain
+      title: Peak after check-in
+      text: >-
+        Central and Sheung Wan first, then the Peak Tram late enough for daylight, sunset and the
+        harbour lights without crossing the city twice.
+    - icon: sparkle
+      title: Kowloon after dark
+      text: >-
+        Museum and Nan Lian by day; Mong Kok, Temple Street and the Tsim Sha Tsui waterfront when
+        the neon and skyline switch on.
+    - icon: star
+      title: Two Lantau days
+      text: >-
+        Disneyland gets its own full day. Ngong Ping, Tian Tan Buddha, Po Lin and Tai O get another
+        — no rushed half-day combination.
+    - icon: pin
+      title: Macau by two routes
+      text: >-
+        Ferry from Hong Kong to Macau in the morning; return by the HZMB shuttle bus after the old
+        city and Cotai.
+  tips:
+    - >-
+      All four Air India sectors share PNR 9IX6UU for Aishwariya Killiot Kolath and Adarsh Suresan
+      Nair.
+    - >-
+      4 Sep is a Delhi connection day: AI 9482 lands 07:25 and AI 314 leaves 22:10. Lemon Tree
+      Premier City Center, Gurugram (1926711433) was booked for the day.
+    - >-
+      Butterfly on Wellington is in Central, 122 Wellington Street. Airport Express to Hong Kong
+      station, then walk / taxi; five nights, 5–10 Sep (NaiTedc8os15CnBu).
+    - >-
+      Use an Octopus card for MTR, buses, trams and Star Ferry. Keep a bank card / cash backup for
+      Macau.
+    - >-
+      Macau day: carry passports and any required entry paperwork. Take the ferry from Hong
+      Kong–Macau Ferry Terminal in Sheung Wan to Macau; return from Macau Port by HZMB shuttle bus
+      to Hong Kong Port, then airport bus / MTR into town.
+    - >-
+      The Macau ferry and HZMB bus use different terminals. Allow transfer time after Cotai; do not
+      plan the last bus connection tightly.
+    - >-
+      AI 315 leaves HKG at 08:50 on 10 Sep. Leave Central about 05:45–06:00 by taxi / first Airport
+      Express connection.
+  stays:
+    - place: Lemon Tree Premier City Center
+      detail: 4 Sep 2025 · day-use / connection · Gurugram · 1926711433
+    - place: Butterfly on Wellington
+      detail: 5–10 Sep 2025 · 5 nights · Central · NaiTedc8os15CnBu
+  bookings:
+    - kind: flight
+      title: Air India AI 9482
+      detail: Bengaluru (BLR) 04:30 → Delhi (DEL) 07:25
+      when: 4 Sep 2025
+      ref: 9IX6UU
+      extra: Aishwariya Killiot Kolath & Adarsh Suresan Nair
+    - kind: hotel
+      title: Lemon Tree Premier City Center
+      detail: 287, Millennium City Center, Sector 29, Gurugram
+      when: 4 Sep 2025 · connection stay
+      ref: "1926711433"
+      extra: Reservation under Adarsh Nair
+    - kind: flight
+      title: Air India AI 314
+      detail: Delhi (DEL) 22:10 → Hong Kong (HKG) 06:15 next morning
+      when: 4 → 5 Sep 2025
+      ref: 9IX6UU
+      extra: Overnight sector · Aishwariya & Adarsh
+    - kind: hotel
+      title: Butterfly on Wellington
+      detail: 122 Wellington Street, Central, Hong Kong
+      when: 5 Sep in → 10 Sep out
+      ref: NaiTedc8os15CnBu
+      extra: Reservation under Adarsh Nair · 5 nights
+    - kind: flight
+      title: Air India AI 315
+      detail: Hong Kong (HKG) 08:50 → Delhi (DEL) 12:20
+      when: 10 Sep 2025
+      ref: 9IX6UU
+      extra: Aishwariya & Adarsh
+    - kind: flight
+      title: Air India AI 2819
+      detail: Delhi (DEL) 14:10 → Bengaluru (BLR) 17:00
+      when: 10 Sep 2025
+      ref: 9IX6UU
+      extra: Final connection · Aishwariya & Adarsh
+  packing:
+    - Passports and Macau entry documents — this is an international border crossing
+    - Octopus card / mobile Octopus plus a card that works in both SARs
+    - Compact umbrella and breathable clothes for September heat and showers
+    - "Comfortable shoes: Central slopes, Kowloon markets and Macau’s mosaic streets"
+    - Power bank for Disneyland, Lantau and the all-day Macau route
+    - Light layer for strong MTR, ferry and indoor air-conditioning
+  days:
+    - "n": 1
+      date: 2025-09-04
+      city: Bengaluru → Delhi
+      country: IN
+      subtitle: Dawn flight, a long Delhi reset, overnight to Hong Kong
+      theme: rail
+      badge: Transit
+      activities:
+        - Air India AI 9482 · BLR 04:30 → DEL 07:25 (PNR 9IX6UU)
+        - Transfer to Lemon Tree Premier City Center, Gurugram (1926711433)
+        - Breakfast, shower and sleep during the long connection
+        - Return to DEL by 19:00
+        - Air India AI 314 · DEL 22:10 → HKG 06:15 next morning
+      stay: Overnight flight AI 314
+      legs:
+        - mode: plane
+          text: BLR → DEL (AI 9482)
+          duration: 04:30–07:25
+        - mode: plane
+          text: DEL → HKG (AI 314)
+          duration: 22:10–06:15 +1
+      note: >-
+        This is intentionally only transit. The Gurugram room protects the 14-hour connection;
+        sightseeing in Delhi would add risk before the international sector.
+    - "n": 2
+      date: 2025-09-05
+      city: Central, Sheung Wan & Victoria Peak
+      country: HK
+      subtitle: Land, settle into Central, then climb above the skyline
+      theme: city
+      badge: Arrival
+      activities:
+        - Land HKG 06:15 · immigration, bags and Airport Express
+        - Drop bags / check in · Butterfly on Wellington, Central
+        - Breakfast in Central; walk the Central–Mid-Levels Escalator
+        - Man Mo Temple and Hollywood Road, Sheung Wan
+        - PMQ and Tai Kwun heritage courtyards
+        - Peak Tram from Central in late afternoon
+        - Victoria Peak / Sky Terrace — daylight, sunset and night skyline
+        - Dinner back around SoHo / Wellington Street
+      stay: Butterfly on Wellington, Central
+      legs:
+        - mode: train
+          text: HKG → Hong Kong station (Airport Express)
+          duration: ~25 min
+        - mode: day
+          text: Central → Peak Tram → Victoria Peak
+      note: >-
+        Everything is on Hong Kong Island and close to the hotel. The Peak is late on purpose: one
+        ascent gives both daytime visibility and the illuminated harbour.
+    - "n": 3
+      date: 2025-09-06
+      city: Kowloon
+      country: HK
+      subtitle: Garden and history by day, markets and harbour after dark
+      theme: town
+      activities:
+        - MTR to Diamond Hill · Nan Lian Garden at opening
+        - Chi Lin Nunnery across the footbridge
+        - Hong Kong Museum of History, Tsim Sha Tsui
+        - Lunch in Tsim Sha Tsui
+        - Mong Kok — Ladies’ Market, Goldfish Street and sneaker lanes
+        - Temple Street Night Market, Jordan
+        - Walk to Tsim Sha Tsui Promenade / Avenue of Stars
+        - Symphony of Lights from the harbourfront
+        - "Star Ferry: Tsim Sha Tsui → Central"
+      stay: Butterfly on Wellington, Central
+      legs:
+        - mode: train
+          text: Central → Diamond Hill → Tsim Sha Tsui / Mong Kok
+        - mode: boat
+          text: Tsim Sha Tsui Star Ferry Pier → Central
+      note: >-
+        The Kowloon pins are kept together. Nan Lian is best before the heat; markets need evening
+        energy; the Star Ferry is the scenic ride home, not a separate detour.
+    - "n": 4
+      date: 2025-09-07
+      city: Hong Kong Disneyland
+      country: HK
+      subtitle: A full park day — no Buddha or city add-ons
+      theme: castle
+      badge: Disney
+      activities:
+        - Early MTR Central → Sunny Bay → Disneyland Resort
+        - World of Frozen and Mystic Manor early
+        - Big Grizzly Mountain Runaway Mine Cars
+        - Adventureland / Tomorrowland around the midday queues
+        - Main Street dinner
+        - Momentous Nighttime Spectacular
+        - MTR back to Central after park close
+      stay: Butterfly on Wellington, Central
+      legs:
+        - mode: train
+          text: Central ⇄ Disneyland Resort via Sunny Bay
+          duration: ~45 min each way
+      note: >-
+        Disneyland gets the entire day. It shares Lantau geographically with the Buddha, but
+        combining them would sacrifice the morning ride window and evening show.
+    - "n": 5
+      date: 2025-09-08
+      city: Lantau Island
+      country: HK
+      subtitle: Cable car, Big Buddha, Po Lin and Tai O
+      theme: temple
+      activities:
+        - MTR Central → Tung Chung
+        - Ngong Ping 360 cable car to the plateau
+        - Tian Tan Buddha — climb before midday heat
+        - Po Lin Monastery and vegetarian lunch
+        - Wisdom Path
+        - Bus Ngong Ping → Tai O fishing village
+        - Stilt-house lanes and short boat ride
+        - Bus Tai O → Tung Chung, MTR back to Central
+      stay: Butterfly on Wellington, Central
+      legs:
+        - mode: train
+          text: Central ⇄ Tung Chung
+        - mode: day
+          text: Ngong Ping 360 → Buddha / Po Lin → Tai O
+        - mode: boat
+          text: Tai O creek / stilt-house boat
+      note: >-
+        This is the cultural Lantau day. Start at cable-car opening and do Tai O after the
+        monastery; the route moves forward instead of returning to Tung Chung between stops.
+    - "n": 6
+      date: 2025-09-09
+      city: Macau day trip
+      country: MO
+      also: HK
+      subtitle: Ferry out, old city and Cotai, HZMB bus back
+      theme: baroque
+      badge: Macau
+      activities:
+        - Walk / tram to Hong Kong–Macau Ferry Terminal, Sheung Wan
+        - Morning ferry Hong Kong → Macau Outer Harbour
+        - Bus / taxi to Senado Square
+        - St Dominic’s Church and the lanes to Ruins of St Paul’s
+        - Monte Fort and Museum of Macau viewpoint
+        - A-Ma Temple and the Barra waterfront
+        - Macanese lunch — pork-chop bun, minchi or African chicken; egg tart
+        - Bus to Cotai Strip — Venetian canals, Parisian / Londoner exteriors
+        - Transfer to HZMB Macau Port
+        - HZMB shuttle bus Macau → Hong Kong Port
+        - B4 / airport bus or MTR connection back to Central
+      stay: Butterfly on Wellington, Central
+      legs:
+        - mode: boat
+          text: Sheung Wan → Macau Outer Harbour (ferry)
+          duration: ~1 hr
+        - mode: day
+          text: Historic Centre → A-Ma → Cotai
+        - mode: bus
+          text: Macau Port → Hong Kong Port (HZMB shuttle)
+          duration: ~40 min
+      note: >-
+        This records the route actually taken: ferry to Macau, bus back. Old Macau is walked
+        north-to-south before Cotai; the HZMB port is the final stop, avoiding a return across Macau
+        to the ferry terminal.
+    - "n": 7
+      date: 2025-09-10
+      city: Hong Kong → Delhi → Bengaluru
+      country: HK
+      subtitle: Early airport run and the connection home
+      theme: rail
+      epilogue: true
+      activities:
+        - Checkout · Butterfly on Wellington before 06:00
+        - Taxi / Airport Express connection to HKG
+        - Air India AI 315 · HKG 08:50 → DEL 12:20
+        - Air India AI 2819 · DEL 14:10 → BLR 17:00
+      stay: null
+      legs:
+        - mode: plane
+          text: HKG → DEL (AI 315)
+          duration: 08:50–12:20
+        - mode: plane
+          text: DEL → BLR (AI 2819)
+          duration: 14:10–17:00
+      note: >-
+        The Delhi connection is 1 hr 50 min on the same PNR. Keep essentials in cabin baggage and
+        follow transfer signs immediately.
+  regions:
+    - name: PEARL RIVER DELTA
+      lat: 22.3
+      lon: 113.9
+  places:
+    - id: hkg
+      name: Hong Kong Airport
+      lat: 22.309
+      lon: 113.915
+      kind: air
+      ldx: -42
+      ldy: 24
+    - id: central
+      name: Central
+      lat: 22.283
+      lon: 114.154
+      day: 2
+      ldx: 18
+      ldy: 22
+    - id: peak
+      name: Victoria Peak
+      lat: 22.276
+      lon: 114.146
+      day: 2
+      ldx: -42
+      ldy: -16
+    - id: nanlian
+      name: Nan Lian
+      lat: 22.34
+      lon: 114.205
+      day: 3
+      ldx: 18
+      ldy: -16
+    - id: tst
+      name: Tsim Sha Tsui
+      lat: 22.297
+      lon: 114.178
+      day: 3
+      ldx: 28
+      ldy: 12
+    - id: disney
+      name: Disneyland
+      lat: 22.313
+      lon: 114.041
+      day: 4
+      ldx: -38
+      ldy: -14
+    - id: buddha
+      name: Tian Tan Buddha
+      lat: 22.254
+      lon: 113.905
+      day: 5
+      ldx: -48
+      ldy: -16
+    - id: taio
+      name: Tai O
+      lat: 22.253
+      lon: 113.863
+      day: 5
+      ldx: -26
+      ldy: 20
+    - id: macau
+      name: Macau
+      lat: 22.199
+      lon: 113.544
+      day: 6
+      ldx: -14
+      ldy: -18
+    - id: cotai
+      name: Cotai
+      lat: 22.149
+      lon: 113.56
+      day: 6
+      ldx: 22
+      ldy: 18
+  route:
+    - - hkg
+      - central
+      - train
+    - - central
+      - peak
+      - day
+    - - central
+      - nanlian
+      - train
+    - - nanlian
+      - tst
+      - train
+    - - central
+      - disney
+      - train
+    - - central
+      - buddha
+      - train
+    - - buddha
+      - taio
+      - day
+    - - central
+      - macau
+      - boat
+    - - macau
+      - cotai
+      - day
+    - - cotai
+      - hkg
+      - bus
+---
+Seven dates with Aishwariya: Air India from Bengaluru to a long Delhi stop, then overnight AI 314 into Hong Kong. Five nights at Butterfly on Wellington made Central the base. The ten pins are paced geographically — Hong Kong Island on arrival day, Kowloon the next day, then full days for Disneyland and Lantau. The last full day is the trip we actually made to Macau: morning ferry from Hong Kong, the Historic Centre and Cotai, then back by bus over the Hong Kong–Zhuhai–Macau Bridge.

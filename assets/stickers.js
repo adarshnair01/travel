@@ -58,6 +58,12 @@
   /* [terms that appear in a day's text, glyph, the sight's name]
      Landmarks come first so they beat the plain city entry. */
   const SIGHTS = [
+    /* Chennai · Vizag */
+    [["mahabalipuram", "mamallapuram"], "temple", "Mahabalipuram"],
+    [["kanchipuram"], "temple", "Kanchipuram"],
+    [["visakhapatnam", "vizag"], "coast", "Vizag"],
+    [["sipcot", "novotel"], "skyline", "Novotel SIPCOT"],
+
     /* Ujjain */
     [["mahakal"], "temple", "Mahakaleshwar"],
     [["omkareshwar", "omkar"], "temple", "Omkareshwar"],

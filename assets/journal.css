@@ -90,6 +90,9 @@ html[data-theme="dark"] {
 
 * { box-sizing: border-box; }
 [hidden] { display: none !important; }
+body.trip-pending .app-main,
+body.trip-pending .sidebar,
+body.trip-pending .menu-btn { visibility: hidden; }
 
 html { scroll-behavior: smooth; scroll-padding-top: 88px; }
 

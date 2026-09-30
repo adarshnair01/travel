@@ -2,8 +2,9 @@
 (() => {
   "use strict";
 
-  /* A cover may be cover.jpg, cover.jpeg, or cover.png. The markup asks
-     for jpg first; a miss tries the other two before the empty frame. */
+  /* A cover may be cover.jpg, cover.jpeg, or cover.png inside the trip
+     media directory. The markup asks for jpg first; a miss tries the other
+     two in that same directory before the empty frame. */
   const COVERS = ["cover.jpg", "cover.jpeg", "cover.png"];
 
   function tryNextCover(img) {

@@ -154,6 +154,105 @@
       ART[theme] || ART.city
     }</svg>`;
 
+  const page = () => (TRIP && TRIP.page) || {};
+
+  function setText(id, value) {
+    const el = byId(id);
+    if (el && value) el.textContent = value;
+  }
+  function setHTML(id, value) {
+    const el = byId(id);
+    if (el && value) el.innerHTML = value;
+  }
+
+  function showSection(id, on) {
+    const el = byId(id);
+    if (el) el.hidden = !on;
+    const link = document.querySelector(`#tripNav [data-nav="${id}"]`);
+    if (link) link.hidden = !on;
+  }
+
+  function applyPresentation() {
+    const copy = page();
+    if (copy.documentTitle) document.title = copy.documentTitle;
+    const description = document.querySelector('meta[name="description"]');
+    if (description && copy.description) description.setAttribute("content", copy.description);
+    setText("sideName", copy.sidebarName);
+    setText("sideWhen", copy.sidebarWhen);
+    setText("crumbNow", copy.crumb);
+    setText("heroSmall", copy.h1Small);
+    setText("heroBig", copy.h1Big);
+    setText("heroCaption", copy.caption);
+    const searchBox = byId("search");
+    if (searchBox && copy.searchPlaceholder) searchBox.placeholder = copy.searchPlaceholder;
+    setText("ctaPrimary", copy.ctaPrimary);
+    if (byId("ctaPrimary") && copy.ctaPrimaryHref) byId("ctaPrimary").setAttribute("href", copy.ctaPrimaryHref);
+    setText("ctaSecondary", copy.ctaSecondary);
+    if (byId("ctaSecondary") && copy.ctaSecondaryHref) byId("ctaSecondary").setAttribute("href", copy.ctaSecondaryHref);
+    if (copy.nav) {
+      for (const [key, label] of Object.entries(copy.nav)) {
+        const link = document.querySelector(`#tripNav [data-nav="${key}"]`);
+        if (link && label) link.textContent = label;
+      }
+    }
+    const sections = copy.sections || {};
+    for (const [id, block] of Object.entries(sections)) {
+      setText(`${id}Kicker`, block.kicker);
+      setText(`${id}Title`, block.title);
+      setHTML(`${id}Note`, block.note);
+      setText(`${id}Sub`, block.sub);
+    }
+    if (Array.isArray(copy.legend) && byId("legendList")) {
+      byId("legendList").innerHTML = copy.legend
+        .map((item) => `<li><i class="lg ${item.icon}"></i> ${item.label}</li>`)
+        .join("");
+    }
+    const cards = copy.cards || {};
+    setText("tipsTitle", cards.tips);
+    setText("packTitle", cards.packing);
+    setText("lessonsTitle", cards.lessons);
+    setText("staysTitle", cards.stays);
+    setText("wayTitle", cards.wayHome);
+    if (copy.again) {
+      setText("againTitle", copy.again.title);
+      setHTML("againText", copy.again.html);
+      if (byId("againBlock")) byId("againBlock").hidden = false;
+    }
+    setHTML("footerLead", copy.footerLead);
+    setText("footerMuted", copy.footerMuted);
+  }
+
+  function showOptional() {
+    const bookings = TRIP.bookings || [];
+    const has = (list) => Array.isArray(list) && list.length > 0;
+    showSection("days", has(TRIP.days));
+    showSection("tickets", bookings.length > 0 || TRIP.emptyBookings === true);
+    showSection("spending", !!TRIP.spending);
+    showSection("map", has(TRIP.places));
+    showSection("highlights", has(TRIP.highlights));
+    const plan =
+      has(TRIP.tips) ||
+      has(TRIP.packing) ||
+      has(TRIP.stays) ||
+      has(TRIP.lessons) ||
+      has(TRIP.wayHome) ||
+      !!(page().again);
+    showSection("plan", plan);
+    const card = (id, on) => {
+      const el = byId(id);
+      if (el) el.hidden = !on;
+    };
+    card("tipsCard", has(TRIP.tips));
+    card("packCard", has(TRIP.packing));
+    card("lessonsCard", has(TRIP.lessons));
+    card("staysCard", has(TRIP.stays));
+    card("wayCard", has(TRIP.wayHome) || !!(page().again));
+    if (TRIP.heroStats && byId("heroStats")) {
+      if (byId("countdown")) byId("countdown").hidden = true;
+      byId("heroStats").hidden = false;
+    }
+  }
+
   /* ── Static sections ─────────────────────────────────────────────────── */
   function renderStatics() {
     byId("heroEyebrow").textContent = TRIP.tagline;
@@ -209,6 +308,8 @@
     }
 
     if (byId("heroStats") && TRIP.heroStats) {
+      byId("heroStats").hidden = false;
+      if (byId("countdown")) byId("countdown").hidden = true;
       byId("heroStats").innerHTML = TRIP.heroStats
         .map((s) => `<div class="cd-cell"><b>${s.value}</b><span>${s.label}</span></div>`)
         .join("");
@@ -1039,7 +1140,7 @@
     $$(".reveal:not(.in)").forEach((el) => io.observe(el));
   }
 
-  /* ── Deep links: index.html#day-6 opens that day ─────────────────────── */
+  /* ── Deep links: trip.html?id=…#day-6 opens that day ─────────────────── */
   function openFromHash() {
     const m = location.hash.match(/^#day-(\d+)$/);
     if (m) openDay(+m[1]);
@@ -1101,15 +1202,18 @@
     $$(".view-toggle button").forEach((b) => b.classList.toggle("is-active", b.dataset.view === "timeline"));
   }
 
+  applyPresentation();
+  showOptional();
   renderStatics();
   mountQrLightbox();
-  if (byId("packList")) renderPack();
+  if (byId("packList") && !byId("packCard")?.hidden) renderPack();
   renderDays();
-  if (byId("routeSvg")) drawMap();
-  if (byId("countdown")) {
+  if (byId("routeSvg") && !byId("map")?.hidden) drawMap();
+  if (byId("countdown") && !TRIP.heroStats && !byId("countdown").hidden) {
     tick();
     setInterval(tick, 1000);
   }
+  document.body.classList.remove("trip-pending");
   onScroll();
   observeReveals();
   openFromHash();
