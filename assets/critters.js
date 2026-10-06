@@ -170,6 +170,9 @@
       });
       flock.length = 0;
       layer.innerHTML = "";
+      jar.inside.replaceChildren();
+      jar.btn.classList.remove("is-open");
+      busy = false;
     }
 
     const WINGS = [
@@ -205,21 +208,244 @@
           pulse.style.animationDelay = `${rand(-4, 0)}s`;
         }
 
-        /* Neither cast lets you catch it. */
+        /* Neither cast lets you catch it by hand — only the jar can. */
         el.addEventListener("pointerenter", (e) => {
           const critter = flock.find((c) => c.el === el);
-          if (critter) flee(critter, { x: e.clientX, y: e.clientY });
+          if (critter && !critter.caught) flee(critter, { x: e.clientX, y: e.clientY });
         });
 
         const at = place();
         el.style.transform = `translate(${at.x}px, ${at.y}px)`;
         layer.appendChild(el);
 
-        const critter = { el, kind, at, tilt: 0, flight: null, rest: null };
+        const critter = { el, kind, at, tilt: 0, flight: null, rest: null, caught: false, mini: null };
         flock.push(critter);
-        critter.rest = window.setTimeout(() => launch(critter), rand(0, 2200));
+        if (caught) {
+          critter.caught = true;
+          el.style.visibility = "hidden";
+          addToJar(critter);
+        } else {
+          critter.rest = window.setTimeout(() => launch(critter), rand(0, 2200));
+        }
       }
+      refreshJar();
     }
+
+    /* ── The jar ────────────────────────────────────────────────────── */
+    /* Whatever is flying gets swept into the jar, and comes back out on
+       the next click. Switching theme while they're caught swaps the
+       cast inside the jar too. */
+    const jar = buildJar();
+    let caught = false;
+    let busy = false;
+
+    function buildJar() {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "jar";
+      btn.setAttribute("aria-pressed", "false");
+      btn.innerHTML = `<span class="jar-vessel" aria-hidden="true">
+        <svg class="jar-glass" viewBox="0 0 46 58">
+          <path class="jar-body" d="M12 13h22v3c5 1.6 8 5.6 8 11.5V49a7 7 0 0 1-7 7H11a7 7 0 0 1-7-7V27.5C4 21.6 7 17.6 12 16z" />
+        </svg>
+        <span class="jar-inside"></span>
+        <svg class="jar-shine" viewBox="0 0 46 58"><path d="M9.5 27v15" /><path d="M9.5 46.5v2" /></svg>
+        <span class="jar-lid"></span>
+      </span>
+      <span class="jar-text"><b></b><small></small></span>`;
+      document.body.appendChild(btn);
+      return {
+        btn,
+        vessel: btn.querySelector(".jar-vessel"),
+        inside: btn.querySelector(".jar-inside"),
+        title: btn.querySelector(".jar-text b"),
+        sub: btn.querySelector(".jar-text small"),
+      };
+    }
+
+    const COPY = {
+      butterfly: { catch: "Catch the butterflies", out: "out on the page", in: "in the jar" },
+      firefly: { catch: "Catch the fireflies", out: "lighting the page", in: "lit in the jar" },
+    };
+
+    function refreshJar() {
+      const words = COPY[cast] || COPY.butterfly;
+      const title = caught ? "Set them free" : words.catch;
+      const sub = `${flock.length} ${caught ? words.in : words.out}`;
+      jar.title.textContent = title;
+      jar.sub.textContent = sub;
+      jar.btn.setAttribute("aria-pressed", String(caught));
+      jar.btn.setAttribute("aria-label", `${title} — ${sub}`);
+      jar.btn.classList.toggle("is-full", caught);
+      jar.btn.classList.toggle("is-glowing", caught && cast === "firefly");
+    }
+
+    /* Just inside the neck of the jar, in the layer's coordinates. */
+    function mouth(el) {
+      const box = jar.vessel.getBoundingClientRect();
+      return {
+        x: box.left + box.width / 2 - el.offsetWidth / 2,
+        y: box.top + 12 - el.offsetHeight / 2,
+      };
+    }
+
+    const restingOpacity = (kind) => (kind === "butterfly" ? 0.8 : 1);
+
+    function addToJar(critter) {
+      const mini = document.createElement("span");
+      if (critter.kind === "butterfly") {
+        mini.className = "jar-bug";
+        mini.innerHTML = BUTTERFLY;
+        mini.style.setProperty("--bf-a", critter.el.style.getPropertyValue("--bf-a"));
+        mini.style.setProperty("--bf-b", critter.el.style.getPropertyValue("--bf-b"));
+        const beat = rand(0.3, 0.55);
+        $$(".bf-wing", mini).forEach((wing, index) => {
+          wing.style.animationDuration = `${beat}s`;
+          wing.style.animationDelay = `${index ? -beat / 2 : 0}s`;
+        });
+      } else {
+        mini.className = "jar-spark";
+        mini.innerHTML = "<span></span>";
+        mini.firstElementChild.style.animationDuration = `${rand(1.6, 3.4)}s`;
+        mini.firstElementChild.style.animationDelay = `${rand(-3, 0)}s`;
+      }
+      mini.style.left = `${rand(6, 64)}%`;
+      mini.style.top = `${rand(8, 64)}%`;
+      mini.style.setProperty("--flit", `${rand(2.2, 4.4)}s`);
+      mini.style.setProperty("--flit-delay", `${rand(-4, 0)}s`);
+      jar.inside.appendChild(mini);
+      critter.mini = mini;
+    }
+
+    function wobble() {
+      jar.vessel.animate(
+        [
+          { transform: "rotate(0deg)" },
+          { transform: "rotate(-7deg)" },
+          { transform: "rotate(5deg)" },
+          { transform: "rotate(0deg)" },
+        ],
+        { duration: 380, easing: "ease-out" }
+      );
+    }
+
+    function settle(after) {
+      window.setTimeout(() => {
+        jar.btn.classList.remove("is-open");
+        busy = false;
+      }, after);
+    }
+
+    /* Each one is swept up in an arc over the page and dropped through
+       the neck, shrinking as it goes, one after another. */
+    function catchAll() {
+      busy = true;
+      jar.btn.classList.add("is-open");
+      let pending = flock.length;
+      const landed = () => {
+        pending -= 1;
+        if (pending > 0) return;
+        caught = true;
+        refreshJar();
+        settle(260);
+      };
+      if (!pending) return landed();
+
+      flock.forEach((critter, i) => {
+        const start = whereIs(critter.el);
+        halt(critter, start);
+        critter.caught = true;
+        const end = mouth(critter.el);
+        const midX = start.x + (end.x - start.x) * 0.6 + rand(-70, 70);
+        const midY = Math.min(start.y, end.y) - rand(60, 150);
+        const swing = critter.kind === "butterfly" ? rand(-30, 30) : 0;
+        const fade = restingOpacity(critter.kind);
+        if (critter.kind === "butterfly") critter.el.classList.add("is-startled");
+        critter.flight = critter.el.animate(
+          [
+            { transform: `translate(${start.x}px, ${start.y}px) rotate(${critter.tilt}deg) scale(1)`, opacity: fade },
+            { transform: `translate(${midX}px, ${midY}px) rotate(${swing}deg) scale(0.85)`, opacity: fade, offset: 0.55 },
+            { transform: `translate(${end.x}px, ${end.y}px) rotate(0deg) scale(0.3)`, opacity: 0 },
+          ],
+          {
+            duration: rand(1100, 1600),
+            delay: 180 + i * 140,
+            easing: "cubic-bezier(0.45, 0, 0.25, 1)",
+            fill: "forwards",
+          }
+        );
+        critter.flight.onfinish = () => {
+          critter.el.classList.remove("is-startled");
+          critter.el.style.visibility = "hidden";
+          addToJar(critter);
+          wobble();
+          landed();
+        };
+      });
+    }
+
+    /* The lid pops, and they spill out of the neck and scatter back
+       across the page before going back to wandering. */
+    function releaseAll() {
+      busy = true;
+      jar.btn.classList.add("is-open");
+      jar.btn.classList.remove("is-glowing");
+      let pending = flock.length;
+      const flown = () => {
+        pending -= 1;
+        if (pending > 0) return;
+        caught = false;
+        refreshJar();
+        settle(320);
+      };
+      if (!pending) return flown();
+
+      flock.forEach((critter, i) => {
+        const delay = 160 + i * 110;
+        const start = mouth(critter.el);
+        const to = place();
+        const midX = start.x + rand(-60, 90);
+        const midY = start.y - rand(90, 170);
+        const tilt =
+          critter.kind === "butterfly" ? Math.max(-22, Math.min(22, (to.x - start.x) * 0.1)) : 0;
+        const glow = restingOpacity(critter.kind);
+        critter.el.getAnimations().forEach((anim) => anim.cancel());
+        critter.el.style.visibility = "";
+        if (critter.kind === "butterfly") critter.el.classList.add("is-startled");
+        window.setTimeout(() => {
+          if (critter.mini) critter.mini.remove();
+          critter.mini = null;
+        }, delay);
+        critter.flight = critter.el.animate(
+          [
+            { transform: `translate(${start.x}px, ${start.y}px) rotate(0deg) scale(0.3)`, opacity: 0 },
+            { transform: `translate(${midX}px, ${midY}px) rotate(${tilt * 1.4}deg) scale(0.85)`, opacity: glow, offset: 0.4 },
+            { transform: `translate(${to.x}px, ${to.y}px) rotate(${tilt}deg) scale(1)`, opacity: glow },
+          ],
+          {
+            duration: rand(1300, 1900),
+            delay,
+            easing: "cubic-bezier(0.2, 0.7, 0.3, 1)",
+            fill: "both",
+          }
+        );
+        critter.flight.onfinish = () => {
+          critter.el.classList.remove("is-startled");
+          critter.caught = false;
+          critter.tilt = tilt;
+          critter.at = to;
+          halt(critter, to);
+          critter.rest = window.setTimeout(() => launch(critter), rand(200, 900));
+          flown();
+        };
+      });
+    }
+
+    jar.btn.addEventListener("click", () => {
+      if (busy) return;
+      if (caught) releaseAll();
+      else catchAll();
+    });
 
     const castForTheme = () =>
       document.documentElement.dataset.theme === "dark" ? "firefly" : "butterfly";

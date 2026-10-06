@@ -17,6 +17,9 @@ catalog:
     - Mahabalipuram
     - Kanchipuram
     - Visakhapatnam
+    - Rushikonda Beach
+    - Kailasagiri
+    - Simhachalam
   theme: coast
   tagline: Family at Novotel SIPCOT, then the couple on to Vizag
   summary: >-
@@ -130,8 +133,8 @@ trip:
     - icon: boat
       title: Vizag, just the two
       text: >-
-        On the 19th the family returned to Kannur. The couple went to Visakhapatnam, saw Vizag on
-        the 20th, and went home to Bengaluru from there.
+        On the 19th the family returned to Kannur. The couple went to Visakhapatnam, then spent the
+        20th at Rushikonda Beach, Kailasagiri, Tenneti Beach Park, Lumbini Park and Simhachalam.
   tips:
     - The rides into Chennai station were not named. No train or flight numbers were saved.
     - The station-to-hotel cab was booked after arrival. The fare was not saved.
@@ -142,7 +145,9 @@ trip:
     - >-
       How the family returned to Kannur, how the couple reached Visakhapatnam, and how they returned
       to Bengaluru were not recorded.
-    - The Vizag stops on the 20th were not named.
+    - >-
+      The Vizag day covered Rushikonda Beach, Kailasagiri, Tenneti Beach Park, Lumbini Park and
+      Simhachalam’s Sri Varaha Lakshmi Narasimha Temple. Their exact order was not recorded.
   stays:
     - place: Novotel Chennai SIPCOT
       detail: 17–19 Oct 2025 · family stay · confirmation not saved
@@ -237,15 +242,24 @@ trip:
       badge: Vizag
       epilogue: true
       activities:
-        - Places in Vizag
+        - Rushikonda Beach
+        - Kailasagiri
+        - Tenneti Beach Park
+        - Lumbini Park
+        - Simhachalam
+        - Sri Varaha Lakshmi Narasimha Temple
         - Return to Bengaluru from Visakhapatnam
       stay: null
       legs:
         - mode: way
+          text: Vizag coast · Rushikonda → Kailasagiri → Tenneti Beach Park → Lumbini Park
+        - mode: way
+          text: Vizag → Simhachalam · Sri Varaha Lakshmi Narasimha Temple
+        - mode: way
           text: Visakhapatnam → Bengaluru
       note: >-
-        The Vizag stops were not named. How and when the couple left for Bengaluru was not recorded
-        beyond the return from Vizag.
+        Simhachalam and Sri Varaha Lakshmi Narasimha Temple are one temple stop. The order of the
+        Vizag places, and how and when the couple left for Bengaluru, were not recorded.
   regions:
     - name: COROMANDEL
       lat: 13
@@ -300,6 +314,41 @@ trip:
       day: 4
       ldx: 16
       ldy: -14
+    - id: rushikonda
+      name: Rushikonda Beach
+      lat: 17.782
+      lon: 83.385
+      day: 4
+      ldx: 18
+      ldy: -16
+    - id: kailasagiri
+      name: Kailasagiri
+      lat: 17.749
+      lon: 83.342
+      day: 4
+      ldx: -42
+      ldy: -14
+    - id: tenneti
+      name: Tenneti Beach Park
+      lat: 17.748
+      lon: 83.351
+      day: 4
+      ldx: 18
+      ldy: 16
+    - id: lumbini
+      name: Lumbini Park
+      lat: 17.731
+      lon: 83.337
+      day: 4
+      ldx: -38
+      ldy: 16
+    - id: simhachalam
+      name: Sri Varaha Lakshmi Narasimha Temple
+      lat: 17.767
+      lon: 83.25
+      day: 4
+      ldx: -54
+      ldy: 14
   route:
     - - blr
       - station
@@ -323,7 +372,22 @@ trip:
       - vizag
       - way
     - - vizag
+      - rushikonda
+      - way
+    - - rushikonda
+      - kailasagiri
+      - way
+    - - kailasagiri
+      - tenneti
+      - way
+    - - tenneti
+      - lumbini
+      - way
+    - - lumbini
+      - simhachalam
+      - way
+    - - simhachalam
       - blr
       - way
 ---
-Four days. On 17 October Adarsh and his wife came from Bengaluru, and his brother, parents and in-laws came from Kannur. Everyone met at Chennai station, then a cab booked there took the family to Novotel Chennai SIPCOT. The stay covers the 17th to the 19th. Mahabalipuram and Kanchipuram were one day each, both by an Innova cab booked in Chennai. Which place fell on which day was not recorded. On the 19th the family went back to Kannur. Adarsh and his wife went on to Visakhapatnam the same day, spent the 20th visiting places in Vizag, and returned to Bengaluru from there.
+Four days. On 17 October Adarsh and his wife came from Bengaluru, and his brother, parents and in-laws came from Kannur. Everyone met at Chennai station, then a cab booked there took the family to Novotel Chennai SIPCOT. The stay covers the 17th to the 19th. Mahabalipuram and Kanchipuram were one day each, both by an Innova cab booked in Chennai. Which place fell on which day was not recorded. On the 19th the family went back to Kannur. Adarsh and his wife went on to Visakhapatnam the same day. On the 20th they visited Rushikonda Beach, Kailasagiri, Tenneti Beach Park, Lumbini Park and Simhachalam’s Sri Varaha Lakshmi Narasimha Temple, then returned to Bengaluru.

@@ -58,9 +58,28 @@
   /* [terms that appear in a day's text, glyph, the sight's name]
      Landmarks come first so they beat the plain city entry. */
   const SIGHTS = [
+    /* Kota Kinabalu */
+    [["gaya street"], "market", "Gaya Street"],
+    [["manukan", "mamutik", "tunku abdul rahman"], "boat", "Tunku Abdul Rahman Park"],
+    [["tanjung aru"], "beach", "Tanjung Aru"],
+    [["imago"], "market", "Imago"],
+    [["padang merdeka", "merdeka"], "pin", "Padang Merdeka"],
+    [["pasupathinath", "pashupatinath"], "temple", "Sri Pasupathinath Alayam"],
+    [["mari mari"], "pine", "Mari Mari Cultural Village"],
+    [["desa dairy"], "mountain", "Desa Dairy Farm"],
+    [["rafflesia", "kundasang"], "mountain", "Kundasang"],
+    [["likas"], "coast", "Likas"],
+    [["sabah international", "convention centre"], "skyline", "Sabah Convention Centre"],
+    [["kota kinabalu", "inanam"], "coast", "Kota Kinabalu"],
+
     /* Chennai · Vizag */
     [["mahabalipuram", "mamallapuram"], "temple", "Mahabalipuram"],
     [["kanchipuram"], "temple", "Kanchipuram"],
+    [["rushikonda"], "beach", "Rushikonda Beach"],
+    [["kailasagiri"], "mountain", "Kailasagiri"],
+    [["tenneti"], "coast", "Tenneti Beach Park"],
+    [["simhachalam", "varaha lakshmi narasimha"], "temple", "Simhachalam"],
+    [["lumbini park"], "lake", "Lumbini Park"],
     [["visakhapatnam", "vizag"], "coast", "Vizag"],
     [["sipcot", "novotel"], "skyline", "Novotel SIPCOT"],
 

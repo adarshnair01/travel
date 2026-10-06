@@ -115,6 +115,7 @@
     "kanyakumari-2024": [8.09, 77.54],
     "lansdowne-2025": [29.84, 78.69],
     "chennai-vizag-2025": [13.08, 80.27],
+    "kota-kinabalu-2025": [5.98, 116.07],
     "hong-kong-2025": [22.3, 114.17],
     "japan-2025": [35.68, 139.76],
     "tirupati-2025": [13.63, 79.42],
@@ -325,6 +326,13 @@
       ["Peenya", 13.029, 77.519, "IN"],
       ["Tirupati", 13.629, 79.419, "IN"],
       ["Tirumala", 13.683, 79.347, "IN"],
+    ],
+    "kota-kinabalu-2025": [
+      ["Bengaluru", 13.199, 77.707, "IN"],
+      ["Kuala Lumpur", 2.745, 101.71, "MY"],
+      ["Kota Kinabalu", 5.98, 116.073, "MY"],
+      ["Manukan", 5.974, 115.999, "MY"],
+      ["Kundasang", 5.987, 116.54, "MY"],
     ],
     "chennai-vizag-2025": [
       ["Bengaluru", 12.972, 77.595, "IN"],
