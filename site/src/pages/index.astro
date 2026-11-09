@@ -1,0 +1,111 @@
+---
+import { Image } from "astro:assets";
+import Base from "../layouts/Base.astro";
+import StoryCard from "../components/StoryCard.astro";
+import EmptyState from "../components/EmptyState.astro";
+import { getPosts, collectCountries, formatDate, placeLabel } from "../lib/posts";
+import { SITE, url, absUrl } from "../site";
+
+const all = await getPosts();
+const featured = all[0];
+const recent = all.slice(1, 7);
+const countries = collectCountries(all);
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Blog",
+    name: SITE.blogName,
+    url: absUrl("/"),
+    description: SITE.description,
+    author: { "@type": "Person", name: SITE.author },
+    blogPost: all.slice(0, 7).map((p) => ({
+      "@type": "BlogPosting",
+      headline: p.title,
+      url: absUrl(p.path),
+      datePublished: p.date.toISOString(),
+    })),
+  },
+];
+---
+
+<Base path="/" jsonLd={jsonLd}>
+  <section class="home-hero">
+    <div class="wrap">
+      <p class="eyebrow">{SITE.blogName}</p>
+      <h1>{SITE.tagline}</h1>
+      <p class="home-intro">
+        Honest trip write-ups from {SITE.author}: routes that worked, what things cost, and the small moments worth the
+        trip. Based in {SITE.homeBase}.
+      </p>
+      <div class="hero-stats" aria-label="At a glance">
+        <span><strong>{all.length}</strong> {all.length === 1 ? "story" : "stories"}</span>
+        <span><strong>{countries.length}</strong> {countries.length === 1 ? "country" : "countries"}</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap">
+    {
+      featured ? (
+        <>
+          <article class="featured">
+            <a class="featured-media" href={url(featured.path)} tabindex="-1" aria-hidden="true">
+              {featured.entry.data.cover ? (
+                <Image
+                  src={featured.entry.data.cover}
+                  alt=""
+                  layout="full-width"
+                  widths={[640, 960, 1280]}
+                  sizes="(min-width: 900px) 60vw, 100vw"
+                  loading="eager"
+                  fetchpriority="high"
+                />
+              ) : (
+                <div class="story-media-empty"><span>{featured.place ?? "✈"}</span></div>
+              )}
+            </a>
+            <div class="featured-body">
+              <div class="meta">
+                <span class="pill">Latest</span>
+                {placeLabel(featured) && <span>{placeLabel(featured)}</span>}
+                <time datetime={featured.date.toISOString()}>{formatDate(featured.date)}</time>
+              </div>
+              <h2><a href={url(featured.path)}>{featured.title}</a></h2>
+              <p>{featured.description}</p>
+              <a class="btn" href={url(featured.path)}>Read the story →</a>
+            </div>
+          </article>
+
+          {recent.length > 0 && (
+            <>
+              <div class="section-title">
+                <h2>Recent stories</h2>
+                <a href={url("/stories/")}>All stories →</a>
+              </div>
+              <div class="story-grid">{recent.map((p) => <StoryCard post={p} />)}</div>
+            </>
+          )}
+
+          {countries.length > 0 && (
+            <>
+              <div class="section-title">
+                <h2>Where I've been</h2>
+                <a href={url("/places/")}>All places →</a>
+              </div>
+              <nav class="chip-row" aria-label="Countries">
+                {countries.map((c) => (
+                  <a class="tag" href={url(`/places/${c.slug}/`)}>
+                    {c.name} <span class="count">{c.count}</span>
+                  </a>
+                ))}
+              </nav>
+            </>
+          )}
+        </>
+      ) : (
+        <EmptyState title="The map is blank, for now" />
+      )
+    }
+  </div>
+</Base>

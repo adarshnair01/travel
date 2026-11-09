@@ -1,0 +1,37 @@
+---
+import Base from "../../layouts/Base.astro";
+import EmptyState from "../../components/EmptyState.astro";
+import { getPosts, collectCountries, slugify } from "../../lib/posts";
+import { url } from "../../site";
+
+const posts = await getPosts();
+const countries = collectCountries(posts).sort((a, b) => a.name.localeCompare(b.name));
+const placesIn = (slug: string) => [
+  ...new Set(posts.filter((p) => p.country && slugify(p.country) === slug && p.place).map((p) => p.place!)),
+];
+---
+
+<Base title="Places" description="Every country and city covered on the travel blog, with the stories from each." path="/places/" noindex={countries.length === 0}>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Places</p>
+      <h1>Browse by destination</h1>
+      <p>{countries.length} {countries.length === 1 ? "country" : "countries"} so far.</p>
+    </header>
+    {
+      countries.length ? (
+        <div class="place-grid">
+          {countries.map((c) => (
+            <a class="place-card" href={url(`/places/${c.slug}/`)}>
+              <strong>{c.name}</strong>
+              <span class="muted">{placesIn(c.slug).join(" · ") || " "}</span>
+              <span class="count">{c.count} {c.count === 1 ? "story" : "stories"}</span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <EmptyState title="No places yet">Places appear here once a story names its <code>country</code>.</EmptyState>
+      )
+    }
+  </div>
+</Base>

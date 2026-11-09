@@ -1,0 +1,34 @@
+---
+import Base from "../../layouts/Base.astro";
+import StoryCard from "../../components/StoryCard.astro";
+import { getPosts, collectCountries, slugify, type Post, type Term } from "../../lib/posts";
+import { url } from "../../site";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return collectCountries(posts).map((term) => ({
+    params: { country: term.slug },
+    props: { term, posts: posts.filter((p) => p.country && slugify(p.country) === term.slug) },
+  }));
+}
+interface Props {
+  term: Term;
+  posts: Post[];
+}
+const { term, posts } = Astro.props;
+---
+
+<Base
+  title={`${term.name} travel stories`}
+  description={`${posts.length} ${posts.length === 1 ? "story" : "stories"} from ${term.name}: ${posts.slice(0, 3).map((p) => p.title).join("; ")}.`.slice(0, 300)}
+  path={`/places/${term.slug}/`}
+>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow"><a href={url("/places/")}>Places</a></p>
+      <h1>{term.name}</h1>
+      <p>{posts.length} {posts.length === 1 ? "story" : "stories"}</p>
+    </header>
+    <div class="story-grid">{posts.map((p) => <StoryCard post={p} />)}</div>
+  </div>
+</Base>

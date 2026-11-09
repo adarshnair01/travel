@@ -1,0 +1,29 @@
+---
+import { SITE } from "../site";
+
+interface Props {
+  slot: "inArticle" | "endOfPost";
+  format?: "auto" | "fluid" | "rectangle";
+  layout?: string;
+}
+const { slot, format = "auto", layout } = Astro.props;
+const client: string = SITE.adsense.client;
+const id: string = SITE.adsense.slots[slot];
+---
+
+{
+  client && id && (
+    <aside class:list={["ad-slot", `ad-${slot}`]} aria-label="Advertisement" data-pagefind-ignore>
+      <span class="ad-label">Advertisement</span>
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client={client}
+        data-ad-slot={id}
+        data-ad-format={format}
+        data-ad-layout={layout}
+        data-full-width-responsive="true"
+      />
+    </aside>
+  )
+}

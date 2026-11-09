@@ -1,0 +1,19 @@
+---
+import { url } from "../site";
+
+interface Props {
+  title?: string;
+}
+const { title = "No stories yet" } = Astro.props;
+---
+
+<div class="empty-state">
+  <svg viewBox="0 0 120 80" width="120" height="80" aria-hidden="true">
+    <path d="M6 66c18-4 26-22 44-22s24 14 38 14 18-8 26-12" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 6" stroke-linecap="round"></path>
+    <circle cx="6" cy="66" r="4" fill="currentColor"></circle>
+    <path d="M108 20c0 10-10 22-10 22S88 30 88 20a10 10 0 0 1 20 0Z" fill="none" stroke="currentColor" stroke-width="2"></path>
+    <circle cx="98" cy="20" r="3.5" fill="currentColor"></circle>
+  </svg>
+  <h2>{title}</h2>
+  <p><slot>The first stories are on their way. Check back soon, or follow along with the <a href={url("/feed.xml")}>RSS feed</a>.</slot></p>
+</div>

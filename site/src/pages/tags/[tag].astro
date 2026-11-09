@@ -1,0 +1,30 @@
+---
+import Base from "../../layouts/Base.astro";
+import StoryCard from "../../components/StoryCard.astro";
+import { getPosts, collectTags, slugify, type Post, type Term } from "../../lib/posts";
+import { url } from "../../site";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return collectTags(posts).map((term) => ({
+    params: { tag: term.slug },
+    props: { term, posts: posts.filter((p) => p.tags.some((t) => slugify(t) === term.slug)) },
+  }));
+}
+interface Props {
+  term: Term;
+  posts: Post[];
+}
+const { term, posts } = Astro.props;
+---
+
+<Base title={`${term.name} stories`} description={`Travel stories about ${term.name}.`} path={`/tags/${term.slug}/`} noindex={posts.length < 2}>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow"><a href={url("/tags/")}>Topics</a></p>
+      <h1>#{term.name}</h1>
+      <p>{posts.length} {posts.length === 1 ? "story" : "stories"}</p>
+    </header>
+    <div class="story-grid">{posts.map((p) => <StoryCard post={p} />)}</div>
+  </div>
+</Base>

@@ -1,0 +1,19 @@
+---
+import Base from "../layouts/Base.astro";
+import { url } from "../site";
+---
+
+<Base title="Page not found" path="/404.html" noindex>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">404</p>
+      <h1>Took a wrong turn</h1>
+      <p>This page doesn't exist, or it moved. Try searching (press <kbd>/</kbd>) or head back to the start.</p>
+    </header>
+    <div class="btn-row">
+      <a class="btn" href={url("/")}>Home</a>
+      <a class="btn ghost" href={url("/stories/")}>All stories</a>
+      <button class="btn ghost" type="button" data-search-open>Search</button>
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,187 @@
+---
+import { render } from "astro:content";
+import { Image, getImage } from "astro:assets";
+import Base from "../../../layouts/Base.astro";
+import StoryCard from "../../../components/StoryCard.astro";
+import AdSlot from "../../../components/AdSlot.astro";
+import { getPosts, relatedPosts, formatDate, slugify, placeLabel, type Post } from "../../../lib/posts";
+import { SITE, url, absUrl } from "../../../site";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  return posts.map((post, i) => ({
+    params: { year: post.year, slug: post.slug },
+    props: { post, newer: posts[i - 1], older: posts[i + 1] },
+  }));
+}
+
+interface Props {
+  post: Post;
+  newer?: Post;
+  older?: Post;
+}
+const { post, newer, older } = Astro.props;
+const { Content, headings } = await render(post.entry);
+const toc = headings.filter((h) => h.depth === 2);
+const related = relatedPosts(post, await getPosts(), 3);
+const { cover, coverAlt, tripDates, author } = post.entry.data;
+const where = placeLabel(post);
+const pageUrl = absUrl(post.path);
+const og = cover ? await getImage({ src: cover, width: 1200, height: 630, fit: "cover", format: "jpg" }) : undefined;
+const ogImage = og ? new URL(og.src, SITE.origin).href : undefined;
+
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: post.title,
+    description: post.description,
+    datePublished: post.date.toISOString(),
+    dateModified: post.date.toISOString(),
+    mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
+    url: pageUrl,
+    ...(ogImage ? { image: ogImage } : {}),
+    wordCount: post.wordCount,
+    keywords: post.tags.join(", "),
+    inLanguage: SITE.lang,
+    ...(where ? { contentLocation: { "@type": "Place", name: where } } : {}),
+    author: { "@type": "Person", name: author, url: absUrl("/about/"), sameAs: [SITE.socials.linkedin, SITE.socials.github] },
+    publisher: { "@type": "Person", name: SITE.author, url: SITE.socials.website },
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Stories", item: absUrl("/stories/") },
+      ...(post.country
+        ? [{ "@type": "ListItem", position: 2, name: post.country, item: absUrl(`/places/${slugify(post.country)}/`) }]
+        : []),
+      { "@type": "ListItem", position: post.country ? 3 : 2, name: post.title, item: pageUrl },
+    ],
+  },
+];
+---
+
+<Base
+  title={post.title}
+  description={post.description}
+  path={post.path}
+  type="article"
+  image={ogImage}
+  jsonLd={jsonLd}
+  published={post.date}
+  tags={post.tags}
+>
+  <div class="progress" aria-hidden="true"></div>
+  <article data-pagefind-body>
+    <header class:list={["story-hero", { "has-cover": cover }]}>
+      {
+        cover && (
+          <Image
+            class="story-hero-img"
+            src={cover}
+            alt={coverAlt ?? ""}
+            layout="full-width"
+            widths={[640, 960, 1280, 1600, 2000]}
+            sizes="100vw"
+            loading="eager"
+            fetchpriority="high"
+          />
+        )
+      }
+      <div class="wrap narrow story-hero-text">
+        <nav class="breadcrumbs" aria-label="Breadcrumb" data-pagefind-ignore>
+          <ol>
+            <li><a href={url("/stories/")}>Stories</a></li>
+            {post.country && <li><a href={url(`/places/${slugify(post.country)}/`)}>{post.country}</a></li>}
+          </ol>
+        </nav>
+        <h1 data-pagefind-meta="title">{post.title}</h1>
+        {post.entry.data.description && <p class="lede">{post.entry.data.description}</p>}
+        <div class="meta" data-pagefind-ignore>
+          {where && <span>📍 {where}</span>}
+          {tripDates && <span>{tripDates}</span>}
+          <time datetime={post.date.toISOString()} data-pagefind-meta="date">{formatDate(post.date)}</time>
+          <span>{post.readingMinutes} min read</span>
+        </div>
+      </div>
+    </header>
+
+    <div class="wrap narrow">
+      <div class="story-tools" data-pagefind-ignore>
+        <span class="muted">By {author}</span>
+        <div class="share">
+          <button class="icon-btn" type="button" data-share aria-label="Share this story">
+            <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
+            <span>Share</span>
+          </button>
+          <a class="icon-btn" href={`https://wa.me/?text=${encodeURIComponent(`${post.title} ${pageUrl}`)}`} target="_blank" rel="noopener" aria-label="Share on WhatsApp">WA</a>
+          <a class="icon-btn" href={`https://x.com/intent/post?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener" aria-label="Share on X">𝕏</a>
+        </div>
+      </div>
+
+      {
+        toc.length > 2 && (
+          <details class="toc" data-pagefind-ignore>
+            <summary>In this story</summary>
+            <ol>
+              {toc.map((h) => (
+                <li><a href={`#${h.slug}`}>{h.text.replace(/#$/, "")}</a></li>
+              ))}
+            </ol>
+          </details>
+        )
+      }
+
+      <div class="prose">
+        <Content />
+      </div>
+
+      <div hidden data-insert-at="0.35" data-pagefind-ignore><AdSlot slot="inArticle" format="fluid" layout="in-article" /></div>
+      <AdSlot slot="endOfPost" />
+
+      <footer class="post-foot" data-pagefind-ignore>
+        {
+          post.tags.length > 0 && (
+            <div class="chip-row">
+              {post.tags.map((t) => (
+                <a class="tag" href={url(`/tags/${slugify(t)}/`)}>#{t}</a>
+              ))}
+            </div>
+          )
+        }
+        <nav class="post-nav" aria-label="More stories">
+          {older && (
+            <a href={url(older.path)} rel="prev">
+              <small>← Previous story</small>
+              {older.title}
+            </a>
+          )}
+          {newer && (
+            <a class="next" href={url(newer.path)} rel="next">
+              <small>Next story →</small>
+              {newer.title}
+            </a>
+          )}
+        </nav>
+      </footer>
+    </div>
+
+    {
+      related.length > 0 && (
+        <section class="wrap related" data-pagefind-ignore>
+          <div class="section-title"><h2>More from the road</h2></div>
+          <div class="story-grid">{related.map((p) => <StoryCard post={p} heading="h3" />)}</div>
+        </section>
+      )
+    }
+  </article>
+
+  <button class="icon-btn to-top" type="button" aria-label="Back to top" data-to-top>↑</button>
+  <div class="toast" role="status" aria-live="polite"></div>
+  <script is:inline type="application/json" id="post-config" set:html={JSON.stringify({ title: post.title, url: pageUrl })} />
+  <script>
+    import { initPost } from "../../../lib/post-client";
+    initPost();
+  </script>
+</Base>

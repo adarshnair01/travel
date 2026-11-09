@@ -1,0 +1,30 @@
+---
+import Base from "../layouts/Base.astro";
+import { SITE } from "../site";
+const updated = "November 9, 2026";
+---
+
+<Base title="Privacy policy" description={`What data ${SITE.blogName} collects, why, and how to opt out.`} path="/privacy/">
+  <div class="wrap narrow">
+    <header class="page-head"><p class="eyebrow">Legal</p><h1>Privacy policy</h1><p>Last updated {updated}.</p></header>
+    <div class="prose">
+      <p>This site ({SITE.origin}{SITE.base}/) is run by {SITE.author}. It has no accounts and doesn't ask you for personal information.</p>
+      <h2>Analytics</h2>
+      <p>
+        I use Google Analytics 4 to understand which stories are read and how people find them. It uses cookies and
+        collects things like pages viewed, approximate location, device and browser, and clicks on outbound links. You can
+        opt out with the <a href="https://tools.google.com/dlpage/gaoptout" rel="noopener">Google Analytics opt-out add-on</a>.
+      </p>
+      <h2>Advertising</h2>
+      <p>
+        This site may use Google AdSense. Google and its partners use cookies to serve ads based on your visits to this and
+        other websites. You can turn off personalised ads in <a href="https://adssettings.google.com" rel="noopener">Google Ads Settings</a>
+        or opt out of third-party vendors at <a href="https://www.aboutads.info/choices" rel="noopener">aboutads.info</a>.
+      </p>
+      <h2>Your preferences</h2>
+      <p>The light/dark theme choice is stored in your browser's local storage and never sent anywhere.</p>
+      <h2>Contact</h2>
+      <p>Email <a href={`mailto:${SITE.socials.email}`}>{SITE.socials.email}</a> with any privacy request.</p>
+    </div>
+  </div>
+</Base>

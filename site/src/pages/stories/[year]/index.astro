@@ -1,0 +1,32 @@
+---
+import Base from "../../../layouts/Base.astro";
+import StoryCard from "../../../components/StoryCard.astro";
+import { getPosts, type Post } from "../../../lib/posts";
+import { url } from "../../../site";
+
+export async function getStaticPaths() {
+  const posts = await getPosts();
+  const years = [...new Set(posts.map((p) => p.year))];
+  return years.map((year) => ({ params: { year }, props: { year, posts: posts.filter((p) => p.year === year), years } }));
+}
+interface Props {
+  year: string;
+  posts: Post[];
+  years: string[];
+}
+const { year, posts, years } = Astro.props;
+---
+
+<Base title={`Stories from ${year}`} description={`${posts.length} travel ${posts.length === 1 ? "story" : "stories"} published in ${year}.`} path={`/stories/${year}/`}>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow"><a href={url("/stories/")}>Stories</a></p>
+      <h1>{year}</h1>
+      <p>{posts.length} {posts.length === 1 ? "story" : "stories"}</p>
+    </header>
+    <nav class="chip-row" aria-label="Years">
+      {years.map((y) => <a class="tag" href={url(`/stories/${y}/`)} aria-current={y === year ? "page" : undefined}>{y}</a>)}
+    </nav>
+    <div class="story-grid">{posts.map((p) => <StoryCard post={p} heading="h3" />)}</div>
+  </div>
+</Base>

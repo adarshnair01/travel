@@ -1,0 +1,13 @@
+---
+import StoryIndex from "../../../components/StoryIndex.astro";
+import { getPosts } from "../../../lib/posts";
+import { SITE } from "../../../site";
+
+export async function getStaticPaths() {
+  const total = Math.ceil((await getPosts()).length / SITE.postsPerPage);
+  return Array.from({ length: Math.max(0, total - 1) }, (_, i) => ({ params: { n: String(i + 2) } }));
+}
+const page = Number(Astro.params.n);
+---
+
+<StoryIndex page={page} />

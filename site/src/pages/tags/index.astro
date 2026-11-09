@@ -1,0 +1,31 @@
+---
+import Base from "../../layouts/Base.astro";
+import EmptyState from "../../components/EmptyState.astro";
+import { getPosts, collectTags } from "../../lib/posts";
+import { url } from "../../site";
+
+const terms = collectTags(await getPosts());
+---
+
+<Base title="Topics" description="Browse travel stories by topic: food, trekking, budget, itineraries and more." path="/tags/" noindex={terms.length < 3}>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">Topics</p>
+      <h1>Browse by topic</h1>
+      <p>{terms.length} {terms.length === 1 ? "topic" : "topics"}.</p>
+    </header>
+    {
+      terms.length ? (
+        <div class="chip-row">
+          {terms.map((t) => (
+            <a class="tag" href={url(`/tags/${t.slug}/`)}>
+              {t.name} <span class="count">{t.count}</span>
+            </a>
+          ))}
+        </div>
+      ) : (
+        <EmptyState title="No topics yet">Topics come from each story's <code>tags</code>.</EmptyState>
+      )
+    }
+  </div>
+</Base>

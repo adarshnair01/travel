@@ -1,0 +1,43 @@
+---
+import { url } from "../site";
+
+interface Props {
+  current: number;
+  total: number;
+  /** Builds the path (relative to base) for page n. */
+  pathFor: (n: number) => string;
+}
+const { current, total, pathFor } = Astro.props;
+
+const pages: (number | "gap")[] = [];
+for (let n = 1; n <= total; n++) {
+  if (n === 1 || n === total || Math.abs(n - current) <= 2) pages.push(n);
+  else if (pages[pages.length - 1] !== "gap") pages.push("gap");
+}
+---
+
+{
+  total > 1 && (
+    <nav class="pager" aria-label="Pagination">
+      {current > 1 && (
+        <a href={url(pathFor(current - 1))} rel="prev">
+          ← Newer
+        </a>
+      )}
+      {pages.map((p) =>
+        p === "gap" ? (
+          <span class="gap">…</span>
+        ) : p === current ? (
+          <span aria-current="page">{p}</span>
+        ) : (
+          <a href={url(pathFor(p))}>{p}</a>
+        ),
+      )}
+      {current < total && (
+        <a href={url(pathFor(current + 1))} rel="next">
+          Older →
+        </a>
+      )}
+    </nav>
+  )
+}

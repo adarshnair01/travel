@@ -1,0 +1,56 @@
+---
+import Base from "../layouts/Base.astro";
+import StoryCard from "../components/StoryCard.astro";
+import { getPosts, collectCountries } from "../lib/posts";
+import { SITE, url, absUrl } from "../site";
+
+const all = await getPosts();
+const latest = all.slice(0, 3);
+const countries = collectCountries(all).length;
+const jsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "ProfilePage",
+    url: absUrl("/about/"),
+    mainEntity: {
+      "@type": "Person",
+      name: SITE.author,
+      url: SITE.socials.website,
+      homeLocation: { "@type": "Place", name: SITE.homeBase },
+      sameAs: [SITE.socials.linkedin, SITE.socials.github, SITE.socials.blog],
+    },
+  },
+];
+---
+
+<Base title="About" description={`About ${SITE.author} and ${SITE.blogName}.`} path="/about/" type="profile" jsonLd={jsonLd}>
+  <div class="wrap narrow">
+    <header class="page-head">
+      <p class="eyebrow">About</p>
+      <h1>Hi, I'm {SITE.author.split(" ")[0]}</h1>
+      <p>Based in {SITE.homeBase}{countries > 0 && <>, {countries} {countries === 1 ? "country" : "countries"} written up so far</>}.</p>
+    </header>
+    <div class="prose">
+      <p>
+        This is where I write up trips: the route, how we got around, what it cost, and the parts that made it worth going.
+        The aim is simple. If you're planning the same trip, you should come away with something useful.
+      </p>
+      <p>
+        By day I work in data science and write about it on my <a href={SITE.socials.blog}>other blog</a>.
+      </p>
+      <div class="btn-row">
+        <a class="btn" href={url("/stories/")}>Read the stories</a>
+        <a class="btn ghost" href={`mailto:${SITE.socials.email}`}>Email me</a>
+        <a class="btn ghost" href={SITE.socials.linkedin} rel="me noopener">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  {
+    latest.length > 0 && (
+      <div class="wrap">
+        <div class="section-title" style="margin-top:56px"><h2>Latest stories</h2></div>
+        <div class="story-grid">{latest.map((p) => <StoryCard post={p} heading="h3" />)}</div>
+      </div>
+    )
+  }
+</Base>
