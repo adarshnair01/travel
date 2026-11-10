@@ -5,9 +5,8 @@ description: "A six-day route from Bengaluru through the Western Ghats to Mangal
 place: "Coastal Karnataka"
 country: "India"
 # tripDates: "Month YYYY"
-# Add a cover: put a photo in posts/images/coastal-karnataka/ and uncomment.
-# cover: ./images/coastal-karnataka/cover.jpg
-# coverAlt: ""
+cover: ./images/coastal-karnataka/cover.jpg
+coverAlt: "A green headland and rocky shore above the Arabian Sea at Gokarna"
 tags: ["karnataka", "beaches", "road trip", "itinerary", "from bengaluru"]
 ---
 
@@ -43,6 +42,9 @@ The variety is the real draw. In one morning you can eat neer dosa with chicken 
 
 ## Getting around
 
+![A coastal road lined with coconut palms near Mangaluru](./images/coastal-karnataka/palm-road.jpg)
+*Coconut palms line most roads near the coast. Photo: [Pradeep Gopal](https://unsplash.com/photos/a-car-driving-down-a-road-surrounded-by-palm-trees-Cr-GaXHE9aQ) on Unsplash*
+
 The coast is simple to travel because NH66 and the Konkan Railway run side by side for its whole length.
 
 - **Buses:** Private and KSRTC buses along NH66 run every few minutes between Mangaluru, Udupi and Kundapura, and less often further north. A Mangaluru–Udupi ride (about 60 km) costs ₹70–100. Conductors call out the stops, so just ask.
@@ -71,6 +73,9 @@ Mangaluru's "lunch homes" are no-frills Bunt and Konkani restaurants that serve 
 
 The Sri Krishna Matha, founded by the philosopher Madhvacharya in the 13th century, is why Udupi exists as a pilgrim town. Pilgrims see the idol through the Kanakana Kindi, a small window with nine holes. The story goes that Krishna turned to face a low-caste devotee, Kanakadasa, who was refused entry. Entry is free and lunch from the temple kitchen is served to everyone. Come early in the morning to avoid the bus-tour crowds, then walk the lanes around Car Street for brass lamps and temple sweets.
 
+![A tiled pavilion standing in a temple tank in Udupi](./images/coastal-karnataka/udupi-temple-tank.jpg)
+*The temple tank in Udupi's temple quarter. Photo: [Sindhudweepa Sharma](https://unsplash.com/photos/flOFzoSMRXw) on Unsplash*
+
 ### Take the ferry to St Mary's Island
 
 Off Malpe, St Mary's Island is made of hexagonal basalt columns that formed when Madagascar broke away from India about 88 million years ago. It's a national geological monument. Boats leave Malpe beach from about 09:00 to 17:00, take around 30 minutes, and cost about ₹350 for a return ticket. Swimming isn't allowed, there's no shade or food on the island, and the ferry stops from June to September. Go in the first boat while the rocks are still cool.
@@ -83,6 +88,9 @@ North of Kundapura, NH66 runs along a strip of sand with the Arabian Sea on the 
 
 Murudeshwar sits on a small headland, Kanduka Giri, with the sea on three sides. Behind the temple a 37-metre seated Shiva faces the water. In front stands a 20-storey gopuram with a lift to the top. Ride it (₹10–20) about an hour before sunset for the view down the coast and over the fishing harbour. The inner shrine expects modest dress and men may be asked to remove their shirts, so carry a dhoti or a long-sleeved top.
 
+![Aerial view of the seated Shiva statue at Murudeshwar on a green headland by the sea](./images/coastal-karnataka/murudeshwar.jpg)
+*Murudeshwar's Shiva on Kanduka Giri, with the sea on three sides. Photo: [Tharun Kumar. U](https://unsplash.com/photos/uY0n8FV_ds0) on Unsplash*
+
 ### Dive or snorkel at Netrani Island
 
 Netrani is a heart-shaped island about 19 km off Murudeshwar and the best dive site on India's west coast: coral, reef fish, and on good days turtles and whale sharks. You don't need a certificate. A boat trip with snorkelling costs ₹2,000–2,500, a first-time "discover scuba" dive ₹4,500–6,500, and prices peak from December to mid-January. Visibility is best from February to April. Book a day ahead and pack seasickness tablets: the boat ride takes about an hour each way.
@@ -91,11 +99,17 @@ Netrani is a heart-shaped island about 19 km off Murudeshwar and the best dive s
 
 Gokarna's beaches are separated by headlands, and the best way to see them is on foot. From Kudle it's about 20 minutes over the hill to Om Beach, then 30–40 minutes of cliff path to Half Moon Beach. Another 20–30 minutes of scrambling takes you to the rocky cove signposted as Paradise Beach. Start by 08:00, wear proper shoes, and carry water. You can get a boat back from Half Moon or Om, usually a few hundred rupees a seat when enough people share it.
 
+![Aerial view of a small sandy cove with fishing boats near Gokarna](./images/coastal-karnataka/gokarna-cove.jpg)
+*One of the coves along Gokarna's cliff path, from above. Photo: [Raman Choudhary](https://unsplash.com/photos/MyCKTYn9A78) on Unsplash*
+
 ## Off the beaten path
 
 ### Kapu lighthouse at low tide
 
 Kapu (Kaup) is a quiet beach 13 km south of Udupi with a lighthouse from 1901 standing on a pile of black rocks. You can climb the lighthouse for a small fee in the afternoon. The rocks around its base turn into a maze of tide pools at low tide. Buses on the Mangaluru–Udupi route stop at Kapu junction, a 15-minute walk away.
+
+![A striped lighthouse on rocks beside a sandy beach on the Udupi coast](./images/coastal-karnataka/lighthouse.jpg)
+*A lighthouse on the rocks of the Udupi coast. Photo: [Hemendra Ahuja](https://unsplash.com/photos/a-lighthouse-on-a-beach-tILxrAivG-U) on Unsplash*
 
 ### Kodi Bengre and the Kemmannu hanging bridge
 
@@ -197,3 +211,5 @@ On top of this, budget ₹1,000–2,500 for the train or bus each way from Benga
 ## Final word
 
 The ghat train is the right way in because it shows you the change before the coast begins: the hills, the tunnels, then the first red roofs and the smell of the sea. Six days later you're on a cliff above Om Beach, a full thali and a ferry ride from where you started, wondering why you kept going to Goa.
+
+*Cover: the headland at Gokarna. Photo: [Tirth Jivani](https://unsplash.com/photos/Z9CnSmEFWiE) on Unsplash.*
