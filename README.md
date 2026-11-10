@@ -5,6 +5,11 @@ Travel stories, routes and practical notes, built with [Astro](https://astro.bui
 
 ## Writing a story
 
+**Generate a draft:** the local-only [Story Desk](generator/README.md) turns a place name into a
+researched draft in the fixed layout: `cd generator && npm start`, then open http://localhost:4400.
+
+**Or write by hand:**
+
 1. Copy `posts/_template.md` to `posts/YYYY-MM-DD-your-slug.md`. Only files with a date prefix are published.
 2. Put photos in `posts/images/<your-slug>/` and reference them relative to the post
    (`cover: ./images/<your-slug>/cover.jpg`, `![alt](./images/<your-slug>/photo.jpg)`).

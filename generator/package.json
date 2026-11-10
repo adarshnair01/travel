@@ -1,0 +1,11 @@
+{
+  "name": "travel-story-desk",
+  "private": true,
+  "type": "module",
+  "description": "Local-only admin that turns a place name into a draft travel story using a desk of Gemini agents.",
+  "scripts": {
+    "start": "node --env-file-if-exists=.env server.mjs",
+    "mock": "GEN_MOCK=1 node server.mjs"
+  },
+  "engines": { "node": ">=22" }
+}

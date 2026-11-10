@@ -4,8 +4,48 @@
     {
       "name": "travel-preview",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["--prefix", "site", "run", "preview"],
+      "runtimeArgs": [
+        "--prefix",
+        "site",
+        "run",
+        "preview"
+      ],
       "port": 4321
+    },
+    {
+      "name": "travel-dev",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "site",
+        "run",
+        "dev"
+      ],
+      "port": 4321,
+      "autoPort": false
+    },
+    {
+      "name": "story-desk-mock",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "generator",
+        "run",
+        "mock"
+      ],
+      "port": 4400,
+      "autoPort": false
+    },
+    {
+      "name": "story-desk",
+      "runtimeExecutable": "npm",
+      "runtimeArgs": [
+        "--prefix",
+        "generator",
+        "start"
+      ],
+      "port": 4400,
+      "autoPort": false
     }
   ]
 }

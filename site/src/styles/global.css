@@ -1212,3 +1212,79 @@ kbd {
   max-width: 46ch;
   margin: 0 auto;
 }
+
+/* Drafts (visible only in `npm run dev`) */
+.draft-badge {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: var(--accent-2);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+.draft-badge.static {
+  position: static;
+  display: inline-block;
+  margin: 0 0 12px;
+}
+
+/* Fixed story layout: sections the generator always produces */
+.prose h2#at-a-glance + table {
+  display: table;
+  width: 100%;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background: var(--bg-elev);
+}
+.prose h2#at-a-glance + table thead {
+  display: none;
+}
+.prose h2#at-a-glance + table td:first-child {
+  width: 38%;
+  color: var(--muted);
+  font-weight: 600;
+  background: var(--bg-sunk);
+}
+.prose h2#at-a-glance + table tr:last-child td {
+  border-bottom: 0;
+}
+.prose h2#things-you-probably-didnt-know + ul {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.prose h2#things-you-probably-didnt-know + ul > li {
+  margin: 0;
+  padding: 14px 16px 14px 48px;
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+  position: relative;
+  font-family: var(--sans);
+  font-size: 1rem;
+  line-height: 1.55;
+}
+.prose h2#things-you-probably-didnt-know + ul > li::before {
+  content: "💡";
+  position: absolute;
+  left: 16px;
+  top: 13px;
+}
+.prose h2#off-the-beaten-path {
+  padding-top: 0.6em;
+  border-top: 2px dashed var(--line);
+}
+.prose h2#off-the-beaten-path::before {
+  content: "🧭 ";
+}
+.prose h2#sources ~ ul {
+  font-family: var(--sans);
+  font-size: 0.85rem;
+  color: var(--muted);
+}

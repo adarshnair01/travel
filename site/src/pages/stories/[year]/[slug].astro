@@ -96,6 +96,7 @@ const jsonLd = [
             {post.country && <li><a href={url(`/places/${slugify(post.country)}/`)}>{post.country}</a></li>}
           </ol>
         </nav>
+        {post.draft && <p class="draft-badge static">Draft · only visible in local dev</p>}
         <h1 data-pagefind-meta="title">{post.title}</h1>
         {post.entry.data.description && <p class="lede">{post.entry.data.description}</p>}
         <div class="meta" data-pagefind-ignore>

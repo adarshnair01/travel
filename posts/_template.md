@@ -1,32 +1,79 @@
 ---
-# Copy this file to posts/YYYY-MM-DD-your-slug.md (the date prefix is what publishes it).
+# Copy this file to posts/YYYY-MM-DD-your-slug.md (the date prefix is what publishes it),
+# or generate one with the Story Desk: `cd generator && npm start`.
 # The URL becomes /travel/stories/<year>/<your-slug>/.
-title: "Three slow days in Kyoto"
+# Every story uses the same fixed layout (generator/layout.mjs). Keep the ## headings below.
+title: "Three slow days in Hampi"
 date: 2026-12-01
 description: "One or two sentences for the card, search results and social previews."
-place: "Kyoto"
-country: "Japan"
-tripDates: "March 2026"
+place: "Hampi"
+country: "India"
+tripDates: "December 2026"
 # Put photos in posts/images/<your-slug>/ and point at them relative to this file.
-# They're resized and converted to WebP at build time, so full-size JPEGs are fine.
-cover: ./images/kyoto/cover.jpg
-coverAlt: "Lanterns along a lane in Gion at dusk"
-tags: [Japan, food, itinerary]
+cover: ./images/hampi/cover.jpg
+coverAlt: "Boulders and temple towers at sunrise"
+tags: [karnataka, history, itinerary]
 draft: true # remove this line (or set false) to publish
 ---
 
-Open with the moment that made the trip.
+Open with a vivid moment from the trip. Then say who this place is for.
+
+## At a glance
+
+| | |
+| --- | --- |
+| Best time to go | |
+| Days you need | |
+| Getting there | |
+| Daily budget | |
+| Language | |
+| Currency | |
+| Good for | |
+
+## Why go
+
+![Photo alt text](./images/hampi/photo.jpg)
+*Caption on the line right after the photo.*
 
 ## Getting there
 
-![Shinkansen platform at Tokyo Station](./images/kyoto/train.jpg)
-*Caption: put it in italics on the line right after the photo.*
+## Getting around
 
-## Where we stayed
+## Where to stay
 
-## What it cost
+## Top things to do
 
-| Item | Cost |
-| --- | --- |
-| Flights | ₹ |
-| Stay | ₹ |
+### First experience
+
+## Off the beaten path
+
+### A lesser-known spot
+
+## Things you probably didn't know
+
+- **Short hook.** The surprising fact.
+
+## What to eat
+
+## A suggested itinerary
+
+### Day 1: Theme
+
+- Morning:
+- Afternoon:
+- Evening:
+
+## What it costs
+
+| Item | Budget | Mid-range |
+| --- | --- | --- |
+| Stay (per night) | | |
+| Food (per day) | | |
+| Local transport (per day) | | |
+| Entry fees | | |
+| **Total per day** | | |
+
+## Good to know
+
+## Final word
+

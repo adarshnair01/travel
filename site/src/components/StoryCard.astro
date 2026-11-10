@@ -37,6 +37,7 @@ const where = placeLabel(post);
       )
     }
     {where && <span class="story-place">{where}</span>}
+    {post.draft && <span class="draft-badge">Draft</span>}
   </div>
   <div class="story-body">
     <div class="meta">

@@ -16,6 +16,7 @@ export interface Post {
   tags: string[];
   readingMinutes: number;
   wordCount: number;
+  draft: boolean;
 }
 
 export function slugify(s: string): string {
@@ -60,11 +61,15 @@ export function clamp(text: string, max = 160): string {
 
 let cache: Post[] | undefined;
 
-/** All published stories, newest first. Drafts and future-dated posts stay hidden. */
+/**
+ * All published stories, newest first. Drafts and future-dated posts stay hidden in the
+ * real build; in `npm run dev` they show (with a Draft badge) so you can preview them locally.
+ */
 export async function getPosts(): Promise<Post[]> {
   if (cache) return cache;
   const now = Date.now();
-  const entries = await getCollection("posts", ({ data }) => !data.draft && data.date.valueOf() <= now);
+  const dev = import.meta.env.DEV;
+  const entries = await getCollection("posts", ({ data }) => dev || (!data.draft && data.date.valueOf() <= now));
 
   const posts: Post[] = entries.map((entry) => {
     const body = entry.body ?? "";
@@ -85,6 +90,7 @@ export async function getPosts(): Promise<Post[]> {
       tags: toList(entry.data.tags),
       readingMinutes: Math.max(1, Math.round(words / 230)),
       wordCount: words,
+      draft: !!entry.data.draft || entry.data.date.valueOf() > now,
     };
   });
 
