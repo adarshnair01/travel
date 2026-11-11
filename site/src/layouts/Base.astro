@@ -125,6 +125,18 @@ const ld = path === "/" ? [...siteGraph, ...jsonLd] : jsonLd;
         </script>
       )
     }
+    {
+      import.meta.env.PROD && SITE.travelpayoutsDrive && (
+        <script is:inline data-noptimize="1" data-cfasync="false" data-no-defer="1" data-cmp-ab="2" define:vars={{ drive: SITE.travelpayoutsDrive }}>
+          // Travelpayouts Drive (affiliate network script); see SITE.travelpayoutsDrive.
+          const s = document.createElement("script");
+          s.async = 1;
+          s.setAttribute("data-cmp-ab", "2");
+          s.src = drive;
+          document.head.appendChild(s);
+        </script>
+      )
+    }
     <slot name="head" />
   </head>
   <body>

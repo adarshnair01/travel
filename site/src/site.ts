@@ -15,6 +15,9 @@ export const SITE = {
   googleSiteVerification: "",
   bingSiteVerification: "",
 
+  // Travelpayouts Drive script (account 599055). Required by Travelpayouts; empty string removes it.
+  travelpayoutsDrive: "https://emrldco.com/NTk5MDU1.js?t=599055",
+
   // Google AdSense. With only `client` set, Auto ads decides placement.
   // Paste "Display" ad-unit slot IDs below to control placement instead.
   adsense: {
