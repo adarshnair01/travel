@@ -14,6 +14,10 @@
 //         partners you join through Cuelinks, INRDeals, vCommission, Travelpayouts or Impact, e.g.
 //         "https://linksredirect.com/?cid=12345&source=linkkit&url={url}"            (Cuelinks)
 //         "https://tp.media/r?marker=12345&trs=1&p=4114&u={url}"                     (Travelpayouts)
+//   links: exact tracked links for single pages, keyed by the path after `aff:<partner>/`, e.g. the
+//         short links Travelpayouts' "Tools > Links" generates. Checked first, before `wrap` and `id`.
+// Travelpayouts account 599055. Booking.com, Agoda, Viator, Hostelworld and GetYourGuide on Travelpayouts
+// need three months of steady traffic before they accept the site; Airalo and Klook are open now.
 // Set `enabled: false` to turn a partner's links back into plain, untracked links.
 
 export const AFFILIATES = {
@@ -32,7 +36,7 @@ export const AFFILIATES = {
   // Gear
   amazon: { name: "Amazon.in", base: "https://www.amazon.in/", param: "tag", id: "travel0bb-21", wrap: "", enabled: true }, // Amazon Associates India tag
   // Visitors from abroad
-  airalo: { name: "Airalo", base: "https://www.airalo.com/", param: "", id: "", wrap: "", enabled: true },
+  airalo: { name: "Airalo", base: "https://www.airalo.com/", param: "", id: "", wrap: "", links: { "india-esim": "https://airalo.tpk.ro/BoXqS3LM" }, enabled: true },
   safetywing: { name: "SafetyWing", base: "https://safetywing.com/", param: "referenceID", id: "", wrap: "", enabled: true },
 };
 
@@ -48,6 +52,7 @@ export function resolveAff(href) {
   if (!p) throw new Error(`Unknown affiliate partner "${key}" in link ${href} (see site/src/affiliates.mjs)`);
   const dest = new URL(m[2], p.base).href;
   if (!p.enabled) return { key, href: dest, paid: false };
+  if (p.links?.[m[2]]) return { key, href: p.links[m[2]], paid: true };
   if (p.wrap) return { key, href: p.wrap.replace("{url}", encodeURIComponent(dest)), paid: true };
   if (p.id && p.param) {
     const u = new URL(dest);
