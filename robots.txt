@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://adarshnair.online/travel/sitemap.xml
+Sitemap: https://adarshnair.in/sitemap.xml
