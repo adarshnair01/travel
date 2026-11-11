@@ -33,7 +33,7 @@
 // Set `enabled: false` to turn a partner's links back into plain, untracked links.
 
 /** Stay22 affiliate ID ("aid" in the Stay22 hub). Empty = Stay22 off. */
-export const STAY22_AID = "";
+export const STAY22_AID = "adarshnair";
 const STAY22_CAMPAIGN = "wandernotes";
 
 export const AFFILIATES = {
@@ -47,7 +47,7 @@ export const AFFILIATES = {
   cleartrip: { name: "Cleartrip", base: "https://www.cleartrip.com/", param: "", id: "", wrap: "", enabled: true }, // via EarnKaro/Cuelinks wrap
   hostelworld: { name: "Hostelworld", base: "https://www.hostelworld.com/", param: "", id: "", wrap: "", enabled: true },
   // Tours and activities
-  getyourguide: { name: "GetYourGuide", base: "https://www.getyourguide.com/", param: "partner_id", id: "", wrap: "", stay22: "getyourguide", enabled: true },
+  getyourguide: { name: "GetYourGuide", base: "https://www.getyourguide.com/", param: "partner_id", id: "WOSNAHU", wrap: "", stay22: "getyourguide", enabled: true },
   viator: { name: "Viator", base: "https://www.viator.com/", param: "pid", extra: { mcid: "42383", medium: "link" }, id: "", wrap: "", enabled: true },
   klook: { name: "Klook", base: "https://www.klook.com/", param: "aid", id: "", wrap: "", enabled: true },
   tiqets: { name: "Tiqets", base: "https://www.tiqets.com/", param: "partner", id: "", wrap: "", enabled: true },
