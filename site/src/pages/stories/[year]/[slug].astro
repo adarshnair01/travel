@@ -27,7 +27,7 @@ const toc = headings.filter((h) => h.depth === 2);
 const related = relatedPosts(post, await getPosts(), 3);
 const { cover, coverAlt, tripDates, author } = post.entry.data;
 const where = placeLabel(post);
-const affiliate = hasPaidLinks(post.entry.data.book);
+const affiliate = hasPaidLinks(post.entry.body);
 const pageUrl = absUrl(post.path);
 const og = cover ? await getImage({ src: cover, width: 1200, height: 630, fit: "cover", format: "jpg" }) : undefined;
 const ogImage = og ? new URL(og.src, SITE.origin).href : undefined;
@@ -126,7 +126,7 @@ const jsonLd = [
       {
         affiliate && (
           <p class="aff-disclosure" data-pagefind-ignore>
-            Some links in this story are affiliate links. If you book or buy through them, the blog earns a small commission at no extra cost to you. I only link to things I'd use myself.
+            Some links in this story are affiliate links: if you book through them, the blog earns a small commission at no extra cost to you. Picks are chosen on reviews and value, never on commission.
           </p>
         )
       }

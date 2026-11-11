@@ -1,9 +1,12 @@
-// Affiliate partners and the "plan and book" boxes that sit at the end of a story's sections.
+// Affiliate partners. Stories link to partners with ordinary Markdown links written as
 //
-// The boxes are added at build time (src/lib/rehype-book.mjs) from each post's `book:` front matter,
-// so stories stay plain Markdown. Links work for readers with or without IDs; once you paste an ID
-// (or a network deep-link template) below, that partner's links start earning on the next deploy.
-// The disclosure line and the "Affiliate links" tag only appear on boxes that contain earning links.
+//   [ArtKarna](aff:booking/hotel/in/art-karna-gokarna.html)
+//
+// i.e. `aff:<partner>/<path on the partner's site>`. At build time src/lib/rehype-aff.mjs turns
+// each one into the real URL, adds your tracking ID, `rel="sponsored"` and GA4 click tracking, so
+// the picks read as part of the story while IDs stay in this one file. Links work for readers with
+// or without IDs; paste an ID (or a network deep-link template) and they start earning on the next
+// deploy. The disclosure line under the byline only appears on stories with earning links.
 //
 // Two ways to make a partner's links earn:
 //   id:   the partner's own tracking parameter, added to the link (e.g. Booking.com `aid`).
@@ -11,112 +14,51 @@
 //         partners you join through Cuelinks, INRDeals, vCommission, Travelpayouts or Impact, e.g.
 //         "https://linksredirect.com/?cid=12345&source=linkkit&url={url}"            (Cuelinks)
 //         "https://tp.media/r?marker=12345&trs=1&p=4114&u={url}"                     (Travelpayouts)
-// Set `enabled: false` to hide a partner everywhere.
+// Set `enabled: false` to turn a partner's links back into plain, untracked links.
 
 export const AFFILIATES = {
   // Stays
-  agoda: { name: "Agoda", param: "cid", id: "", wrap: "", enabled: true },
-  booking: { name: "Booking.com", param: "aid", id: "", wrap: "", enabled: true },
-  hostelworld: { name: "Hostelworld", param: "", id: "", wrap: "", enabled: true },
-  // Activities
-  getyourguide: { name: "GetYourGuide", param: "partner_id", id: "", wrap: "", enabled: true },
-  klook: { name: "Klook", param: "aid", id: "", wrap: "", enabled: true },
-  viator: { name: "Viator", param: "pid", extra: { mcid: "42383", medium: "link" }, id: "", wrap: "", enabled: true },
+  booking: { name: "Booking.com", base: "https://www.booking.com/", param: "aid", id: "", wrap: "", enabled: true },
+  agoda: { name: "Agoda", base: "https://www.agoda.com/", param: "cid", id: "", wrap: "", enabled: true },
+  hostelworld: { name: "Hostelworld", base: "https://www.hostelworld.com/", param: "", id: "", wrap: "", enabled: true },
+  // Tours and activities
+  viator: { name: "Viator", base: "https://www.viator.com/", param: "pid", extra: { mcid: "42383", medium: "link" }, id: "", wrap: "", enabled: true },
+  getyourguide: { name: "GetYourGuide", base: "https://www.getyourguide.com/", param: "partner_id", id: "", wrap: "", enabled: true },
+  klook: { name: "Klook", base: "https://www.klook.com/", param: "aid", id: "", wrap: "", enabled: true },
   // Getting there
-  redbus: { name: "redBus", param: "", id: "", wrap: "", enabled: true },
-  makemytrip: { name: "MakeMyTrip", param: "", id: "", wrap: "", enabled: true },
-  irctc: { name: "IRCTC", param: "", id: "", wrap: "", enabled: true, unpaid: true },
+  redbus: { name: "redBus", base: "https://www.redbus.in/", param: "", id: "", wrap: "", enabled: true },
+  makemytrip: { name: "MakeMyTrip", base: "https://www.makemytrip.com/", param: "", id: "", wrap: "", enabled: true },
+  irctc: { name: "IRCTC", base: "https://www.irctc.co.in/", param: "", id: "", wrap: "", enabled: true }, // no affiliate programme
   // Gear
-  amazon: { name: "Amazon.in", param: "tag", id: "", wrap: "", enabled: true }, // Associates tag, e.g. "wandernotes-21"
+  amazon: { name: "Amazon.in", base: "https://www.amazon.in/", param: "tag", id: "", wrap: "", enabled: true }, // Associates tag, e.g. "wandernotes-21"
   // Visitors from abroad
-  airalo: { name: "Airalo eSIM", param: "", id: "", wrap: "", enabled: true },
-  safetywing: { name: "SafetyWing insurance", param: "referenceID", id: "", wrap: "", enabled: true },
+  airalo: { name: "Airalo", base: "https://www.airalo.com/", param: "", id: "", wrap: "", enabled: true },
+  safetywing: { name: "SafetyWing", base: "https://safetywing.com/", param: "referenceID", id: "", wrap: "", enabled: true },
 };
 
-/** Link to a partner page, tagged when an ID or wrap template is set. */
-export function partnerLink(key, dest) {
+/**
+ * Resolve an `aff:partner/path` href.
+ * @returns {{ key: string, href: string, paid: boolean } | null}
+ */
+export function resolveAff(href) {
+  const m = /^aff:([a-z]+)\/?(.*)$/i.exec(String(href ?? ""));
+  if (!m) return null;
+  const key = m[1].toLowerCase();
   const p = AFFILIATES[key];
-  if (!p || !p.enabled) return null;
-  if (p.wrap) return { key, name: p.name, href: p.wrap.replace("{url}", encodeURIComponent(dest)), paid: true };
+  if (!p) throw new Error(`Unknown affiliate partner "${key}" in link ${href} (see site/src/affiliates.mjs)`);
+  const dest = new URL(m[2], p.base).href;
+  if (!p.enabled) return { key, href: dest, paid: false };
+  if (p.wrap) return { key, href: p.wrap.replace("{url}", encodeURIComponent(dest)), paid: true };
   if (p.id && p.param) {
     const u = new URL(dest);
     u.searchParams.set(p.param, p.id);
     for (const [k, v] of Object.entries(p.extra ?? {})) u.searchParams.set(k, v);
-    return { key, name: p.name, href: u.href, paid: true };
+    return { key, href: u.href, paid: true };
   }
-  return { key, name: p.name, href: dest, paid: false };
+  return { key, href: dest, paid: false };
 }
 
-const q = encodeURIComponent;
-const slug = (s) => String(s).toLowerCase().normalize("NFKD").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-
-/**
- * The boxes for one story, keyed by the section they close. Each box has rows of
- * { label, note?, links[] } and optional chips (single links, e.g. gear).
- * @param {any} book  the post's `book:` front matter
- */
-export function bookBoxes(book) {
-  if (!book) return {};
-  const keep = (links) => links.filter(Boolean);
-  const boxes = {};
-
-  // Getting there: bus, flights, trains.
-  const journey = [];
-  if (book.bus) {
-    const [from, to] = [book.bus.from, book.bus.to];
-    journey.push({ label: book.bus.label ?? `Bus: ${from} to ${to}`, links: keep([partnerLink("redbus", `https://www.redbus.in/bus-tickets/${slug(book.bus.fromSlug ?? from)}-to-${slug(book.bus.toSlug ?? to)}`)]) });
-  }
-  if (book.flight) {
-    const [from, to] = [book.flight.from, book.flight.to];
-    journey.push({ label: book.flight.label ?? `Flights: ${from} to ${to}`, links: keep([partnerLink("makemytrip", `https://www.makemytrip.com/routeplanner/flights-${slug(book.flight.fromSlug ?? from)}-${slug(book.flight.toSlug ?? to)}.html`)]) });
-  }
-  if (book.train) {
-    journey.push({ label: typeof book.train === "string" ? book.train : "Trains", note: "Book early; popular trains sell out weeks ahead", links: keep([partnerLink("irctc", "https://www.irctc.co.in/nget/train-search")]) });
-  }
-  if (journey.some((r) => r.links.length)) boxes["getting-there"] = { icon: "ticket", title: "Book the journey", rows: journey.filter((r) => r.links.length) };
-
-  // Where to stay: one row per area.
-  const stays = (book.stays ?? []).map((s) => ({
-    label: s.area,
-    note: s.note,
-    links: keep([
-      s.agoda ? partnerLink("agoda", `https://www.agoda.com/city/${s.agoda}.html`) : null,
-      partnerLink("booking", `https://www.booking.com/searchresults.html?ss=${q(s.search ?? s.area)}`),
-      s.hostelworld ? partnerLink("hostelworld", `https://www.hostelworld.com/st/hostels/${s.hostelworld}/`) : null,
-    ]),
-  }));
-  if (stays.length) boxes["where-to-stay"] = { icon: "bed", title: "Find a place to stay", rows: stays };
-
-  // Top things to do: bookable activities.
-  const acts = (book.activities ?? []).map((a) => ({
-    label: a.label,
-    note: a.note,
-    links: keep([
-      partnerLink("getyourguide", `https://www.getyourguide.com/s/?q=${q(a.query)}`),
-      partnerLink("klook", `https://www.klook.com/en-IN/search/result/?query=${q(a.query)}`),
-      partnerLink("viator", `https://www.viator.com/searchResults/all?text=${q(a.query)}`),
-    ]),
-  }));
-  if (acts.length) boxes["top-things-to-do"] = { icon: "compass", title: "Book ahead", rows: acts };
-
-  // Good to know: gear chips and visitors from abroad.
-  const gear = (book.gear ?? []).map((g) => ({ ...partnerLink("amazon", `https://www.amazon.in/s?k=${q(g.query ?? g.label)}`), name: g.label })).filter((l) => l.href);
-  const abroad = book.abroad
-    ? keep([partnerLink("airalo", "https://www.airalo.com/india-esim"), partnerLink("safetywing", "https://safetywing.com/nomad-insurance")])
-    : [];
-  if (gear.length || abroad.length) {
-    boxes["good-to-know"] = {
-      icon: "pack",
-      title: "Pack and prepare",
-      chips: gear.length ? { label: "On Amazon.in", links: gear } : null,
-      rows: abroad.length ? [{ label: "Visiting from abroad", links: abroad }] : [],
-    };
-  }
-
-  // Tag each box with whether it earns, for the disclosure.
-  for (const b of Object.values(boxes)) b.paid = [...(b.rows ?? []).flatMap((r) => r.links), ...(b.chips?.links ?? [])].some((l) => l.paid);
-  return boxes;
+/** True when the story's Markdown has at least one earning link (shows the disclosure). */
+export function hasPaidLinks(markdown) {
+  return [...String(markdown ?? "").matchAll(/\]\((aff:[^)\s]+)/g)].some(([, href]) => resolveAff(href)?.paid);
 }
-
-/** True when any link in the story earns a commission (shows the disclosure). */
-export const hasPaidLinks = (book) => Object.values(bookBoxes(book)).some((b) => b.paid);

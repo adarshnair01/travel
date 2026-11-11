@@ -8,7 +8,7 @@ Travel blog of Adarsh Nair ("Wander Notes"), served at https://adarshnair.online
 - `posts/images/<slug>/`: story photos, referenced relative to the post so Astro optimises them.
 - `site/src/content.config.ts`: front-matter schema. `site/src/lib/posts.ts`: loading, URLs, related stories.
 - `site/src/site.ts`: name, nav, socials, GA4 and AdSense IDs. `site/src/styles/global.css`: all styling.
-- `site/src/affiliates.mjs`: affiliate partners and IDs. `site/src/lib/rehype-book.mjs` adds booking boxes to a story's sections at build time from its `book:` front matter (documented in `posts/_template.md`). Earning links get `rel="sponsored"` and trigger the disclosure line; untagged ones are `nofollow`.
+- `site/src/affiliates.mjs`: affiliate partners and IDs. Stories link to picks with `[Name](aff:partner/path)`; `site/src/lib/rehype-aff.mjs` resolves them at build time (tracking ID, `rel="sponsored"` when earning, `nofollow` otherwise, GA4 `affiliate_click`). Picks must be real listings checked for rating, reviews and price; never let the Story Desk invent them.
 - `generator/`: local-only Story Desk (Node, no deps, Gemini). `layout.mjs` is the single source of the fixed post layout; keep `posts/_template.md` and the `.prose h2#…` rules in `global.css` in step with it. Never deploy it or add it to `site/`.
 - `photos/`: raw personal photo dump from the old site. Not part of the build.
 

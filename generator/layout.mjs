@@ -80,27 +80,6 @@ export function slugify(s) {
 
 const yaml = (v) => JSON.stringify(String(v ?? ""));
 
-/**
- * Starter `book:` front matter for the site's booking boxes (site/src/affiliates.mjs), derived from
- * the story itself so it costs no model calls. Check slugs and add Agoda/Hostelworld city slugs
- * and gear before publishing; posts/_template.md documents every field.
- */
-export function bookFrontMatter(post, meta) {
-  const sec = post.sections ?? {};
-  const place = meta.place;
-  const there = String(sec.gettingThere ?? "");
-  const areas = (String(sec.whereToStay ?? "").match(/^\s*[-*]\s+\*\*([^*:]+?):?\*\*/gm) ?? [])
-    .map((l) => l.replace(/^\s*[-*]\s+\*\*|:?\*\*$/g, "").trim())
-    .slice(0, 4);
-  const lines = ["# Booking boxes (see posts/_template.md): check the slugs, add agoda/hostelworld and gear.", "book:"];
-  if (/\bbus/i.test(there) && /bengaluru|bangalore/i.test(there)) lines.push(`  bus: { from: "Bengaluru", to: ${yaml(place)}, fromSlug: "bangalore", toSlug: ${yaml(slugify(place))} }`);
-  if (/\btrain/i.test(there)) lines.push(`  train: true`);
-  lines.push("  stays:", ...(areas.length ? areas : [place]).map((a) => `    - { area: ${yaml(a)}, search: ${yaml(a === place ? place : `${a}, ${place}`)} }`));
-  lines.push("  activities:", `    - { label: ${yaml(`Tours and day trips in ${place}`)}, query: ${yaml(place)} }`);
-  lines.push("  # gear:", '  #   - { label: "Dry bag", query: "dry bag 10 litre" }', "  abroad: true");
-  return lines;
-}
-
 /** Turn the final post object into a Markdown file that matches posts/_template.md. */
 export function toMarkdown(post, meta) {
   const front = [
@@ -115,7 +94,6 @@ export function toMarkdown(post, meta) {
     `# cover: ./images/${meta.slug}/cover.jpg`,
     `# coverAlt: ""`,
     `tags: [${(post.tags ?? []).map(yaml).join(", ")}]`,
-    ...bookFrontMatter(post, meta),
     "draft: true # generated: review, add photos, then remove this line to publish",
     "---",
     "",

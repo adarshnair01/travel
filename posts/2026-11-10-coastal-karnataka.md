@@ -8,26 +8,6 @@ country: "India"
 cover: ./images/coastal-karnataka/cover.jpg
 coverAlt: "A green headland and rocky shore above the Arabian Sea at Gokarna"
 tags: ["karnataka", "beaches", "road trip", "itinerary", "from bengaluru"]
-book:
-  bus: { from: "Bengaluru", to: "Mangaluru", fromSlug: "bangalore", toSlug: "mangalore" }
-  flight: { from: "Bengaluru", to: "Mangaluru", fromSlug: "bangalore", toSlug: "mangalore" }
-  train: "Trains via the Sakleshpur ghats"
-  stays:
-    - { area: "Mangaluru", agoda: "mangalore-in", search: "Mangalore" }
-    - { area: "Udupi and Malpe", agoda: "udupi-in", search: "Udupi" }
-    - { area: "Murudeshwar", search: "Murudeshwar" }
-    - { area: "Gokarna", note: "Beach cafés with rooms at Kudle and Om", agoda: "gokarna-in", search: "Gokarna", hostelworld: "asia/india/gokarna" }
-  activities:
-    - { label: "Netrani Island scuba or snorkel trip", note: "Book a day ahead; peak prices Dec to mid-Jan", query: "Murudeshwar scuba diving" }
-    - { label: "Mangaluru food and city tours", query: "Mangalore" }
-    - { label: "Gokarna beach treks and tours", query: "Gokarna" }
-  gear:
-    - { label: "Dry bag", query: "dry bag 10 litre" }
-    - { label: "Reef-safe sunscreen", query: "reef safe sunscreen spf 50" }
-    - { label: "Trekking sandals", query: "trekking sandals" }
-    - { label: "Quick-dry towel", query: "microfiber quick dry travel towel" }
-    - { label: "Power bank", query: "power bank 10000mah" }
-  abroad: true
 ---
 
 Somewhere past Sakleshpur, the train slows to a crawl and goes dark. It comes out of the tunnel onto a bridge over a gorge so deep that the whole vistadome coach goes quiet at once. For the next two hours it carries on like that: tunnel, bridge, waterfall, tunnel. Then the hills give way to areca palms and red-tiled roofs, and the air through the door smells of salt and frying fish. Bengaluru left at seven in the morning. By late afternoon you're in Mangaluru.
@@ -54,11 +34,11 @@ The variety is the real draw. In one morning you can eat neer dosa with chicken 
 
 ## Getting there
 
-**By train (the best way in):** The Gomateshwara Express (16575) and the weekly 16539 leave Yesvantpur around 07:00 and reach Mangaluru Junction in the late afternoon. Both carry vistadome coaches with glass roofs, worth booking for the Sakleshpur–Subrahmanya Road ghat section of about 55 km, which has dozens of tunnels and bridges. A Bengaluru–Mangaluru Vande Bharat has finished its ghat trials and was promised "within weeks" in November 2026, so check whether it's running when you book. For the return, the overnight Panchaganga Express (16596) leaves Gokarna Road around 18:30 and reaches KSR Bengaluru around 07:15. It often runs an hour late.
+**By train (the best way in):** The Gomateshwara Express (16575) and the weekly 16539 leave Yesvantpur around 07:00 and reach Mangaluru Junction in the late afternoon. Both carry vistadome coaches with glass roofs, worth booking on [IRCTC](aff:irctc/nget/train-search) for the Sakleshpur–Subrahmanya Road ghat section of about 55 km, which has dozens of tunnels and bridges. A Bengaluru–Mangaluru Vande Bharat has finished its ghat trials and was promised "within weeks" in November 2026, so check whether it's running when you book. For the return, the overnight Panchaganga Express (16596) leaves Gokarna Road around 18:30 and reaches KSR Bengaluru around 07:15. It often runs an hour late.
 
-**By bus:** KSRTC's Airavat Club Class and sleeper buses leave Bengaluru every night for Mangaluru (7–9 hours via the Shiradi Ghat on NH75) and Gokarna (about 9 hours via Shivamogga and Kumta). Expect ₹800–1,400 depending on class. In the monsoon the Shiradi Ghat sometimes closes for landslides, and buses take the longer Charmadi or Sampaje routes.
+**By bus:** KSRTC's Airavat Club Class and sleeper buses leave Bengaluru every night for Mangaluru (7–9 hours via the Shiradi Ghat on NH75) and Gokarna (about 9 hours via Shivamogga and Kumta). Expect ₹800–1,400 depending on class; [redBus](aff:redbus/bus-tickets/bangalore-to-mangalore) lists KSRTC and private operators side by side. In the monsoon the Shiradi Ghat sometimes closes for landslides, and buses take the longer Charmadi or Sampaje routes.
 
-**By air:** Mangaluru International Airport (IXE) at Bajpe is an hour's flight from Bengaluru and about 14 km from the city. Fares run ₹3,000–6,000 if booked early. Coming from the north end, Goa's Mopa and Dabolim airports are 2–3 hours by road from Gokarna.
+**By air:** Mangaluru International Airport (IXE) at Bajpe is an hour's flight from Bengaluru and about 14 km from the city. Fares run ₹3,000–6,000 if booked early, and [MakeMyTrip's route page](aff:makemytrip/routeplanner/flights-bangalore-mangalore.html) shows the day's cheapest flights. Coming from the north end, Goa's Mopa and Dabolim airports are 2–3 hours by road from Gokarna.
 
 ## Getting around
 
@@ -74,10 +54,12 @@ The coast is simple to travel because NH66 and the Konkan Railway run side by si
 
 ## Where to stay
 
-- **Mangaluru (Hampankatta, Bejai, Kadri):** central for lunch homes, the Old Port and the train station. Business hotels from ₹1,500, good mid-range for ₹3,000–5,000.
-- **Udupi–Malpe:** stay in Udupi town to be near the Krishna Matha and the restaurants, or at Malpe for the beach and the St Mary's ferry. ₹1,200–4,000.
-- **Murudeshwar:** a short strip of lodges and one big beachfront hotel right below the temple. Fine for one night before a dive. ₹1,500–4,500.
-- **Gokarna:** the town has cheap guesthouses near the temple (from ₹800). Kudle Beach has cafés with rooms and shacks (₹1,200–3,500), and Om Beach has a couple of upscale eco-resorts on the headland (₹6,000 and up).
+- **Mangaluru (Hampankatta, Bejai, Kadri):** central for lunch homes, the Old Port and the train station. [Goldfinch Hotel](aff:booking/hotel/in/goldfinch-mangalore.html) is the reliable mid-range pick (8.2 from over 400 guest reviews, around ₹6,500), and [Vivanta Mangalore](aff:booking/hotel/in/manjarun.html), the old Taj Manjarun on Old Port Road, is the city's best splurge (around ₹18,000).
+- **Udupi–Malpe:** stay in Udupi town to be near the Krishna Matha and the restaurants, or at Malpe for the beach and the St Mary's ferry. In town, [Samanvay Boutique Hotel](aff:booking/hotel/in/samanvay-boutique-udupi.html) has the best reviews of the hotels (8.6 from nearly 500, around ₹6,000), and [Atithi Homestay](aff:booking/hotel/in/atithi-homestay-udupi.html) is a family-run favourite at about ₹2,000 (9.0). At Malpe, [Villa Malpe](aff:booking/hotel/in/villa-malpe.html) puts you close to the ferry (8.9, around ₹7,500).
+- **Murudeshwar:** a short strip of lodges and one big hotel right below the temple. That's [RNS Residency Sea View](aff:booking/hotel/in/rns-residency-sea-view.html) (8.0 from 260+ reviews, around ₹6,000); ask for a sea-facing room. Fine for one night before a dive.
+- **Gokarna:** the town has cheap guesthouses near the temple (from ₹800), and Kudle Beach has cafés with rooms and shacks (₹1,200–3,500). The two best-reviewed small stays are [ArtKarna](aff:booking/hotel/in/art-karna-gokarna.html) (9.4 from 220+ reviews, around ₹2,900) and [Areca Nest](aff:booking/hotel/in/areca-nest.html) (9.2, around ₹2,500); [Revibe Beach Hostel](aff:booking/hotel/in/revibe.html) is the dorm pick (9.1 from 360+). For a splurge, [SwaSwara](aff:booking/hotel/in/swaswara.html), CGH Earth's yoga retreat on the headland above Om Beach, runs ₹40,000 and up.
+
+*Hotel ratings and prices are from Booking.com in November 2026, for a December weeknight for two.*
 
 ## Top things to do
 
@@ -87,7 +69,7 @@ The Sakleshpur–Subrahmanya Road stretch is the most dramatic railway line in S
 
 ### Eat your way through Mangaluru's lunch homes
 
-Mangaluru's "lunch homes" are no-frills Bunt and Konkani restaurants that serve fish thalis and ghee roast at lunch only. Go between 12:30 and 2:00 and order what's on the board: kane (ladyfish) rava fry, bangude (mackerel) pulimunchi, prawn ghee roast. A seafood thali with a fry costs ₹250–450. In the evening, walk over to the St Aloysius Chapel. Its walls and ceiling are covered in paintings by the Italian Jesuit Antonio Moscheni, finished around 1900. Entry is free, and photography inside isn't allowed.
+Mangaluru's "lunch homes" are no-frills Bunt and Konkani restaurants that serve fish thalis and ghee roast at lunch only. Go between 12:30 and 2:00 and order what's on the board: kane (ladyfish) rava fry, bangude (mackerel) pulimunchi, prawn ghee roast. A seafood thali with a fry costs ₹250–450. In the evening, walk over to the St Aloysius Chapel. Its walls and ceiling are covered in paintings by the Italian Jesuit Antonio Moscheni, finished around 1900. Entry is free, and photography inside isn't allowed. If you'd like someone to connect the dots, this [full-day Mangaluru heritage tour](aff:viator/tours/Mangalore/Full-day-private-tour-of-Mangalore-with-guide-and-lunch/d4625-18983P169) covers the chapel, Kadri and Mangaladevi temples and a Mangalore bun stop.
 
 ### See Udupi's Krishna through a nine-holed window
 
@@ -113,11 +95,11 @@ Murudeshwar sits on a small headland, Kanduka Giri, with the sea on three sides.
 
 ### Dive or snorkel at Netrani Island
 
-Netrani is a heart-shaped island about 19 km off Murudeshwar and the best dive site on India's west coast: coral, reef fish, and on good days turtles and whale sharks. You don't need a certificate. A boat trip with snorkelling costs ₹2,000–2,500, a first-time "discover scuba" dive ₹4,500–6,500, and prices peak from December to mid-January. Visibility is best from February to April. Book a day ahead and pack seasickness tablets: the boat ride takes about an hour each way.
+Netrani is a heart-shaped island about 19 km off Murudeshwar and the best dive site on India's west coast: coral, reef fish, and on good days turtles and whale sharks. You don't need a certificate. A boat trip with snorkelling costs ₹2,000–2,500, a first-time "discover scuba" dive ₹4,500–6,500, and prices peak from December to mid-January. Visibility is best from February to April. Book a day ahead with a dive centre in Murudeshwar, and pack seasickness tablets and a [dry bag](aff:amazon/s?k=dry+bag+10+litre) for your phone: the boat ride takes about an hour each way.
 
 ### Walk Gokarna's cliff path from Kudle to the end of the coast
 
-Gokarna's beaches are separated by headlands, and the best way to see them is on foot. From Kudle it's about 20 minutes over the hill to Om Beach, then 30–40 minutes of cliff path to Half Moon Beach. Another 20–30 minutes of scrambling takes you to the rocky cove signposted as Paradise Beach. Start by 08:00, wear proper shoes, and carry water. You can get a boat back from Half Moon or Om, usually a few hundred rupees a seat when enough people share it.
+Gokarna's beaches are separated by headlands, and the best way to see them is on foot. From Kudle it's about 20 minutes over the hill to Om Beach, then 30–40 minutes of cliff path to Half Moon Beach. Another 20–30 minutes of scrambling takes you to the rocky cove signposted as Paradise Beach. Start by 08:00, wear [trekking sandals](aff:amazon/s?k=trekking+sandals) or proper shoes, and carry water. You can get a boat back from Half Moon or Om, usually a few hundred rupees a seat when enough people share it.
 
 ![Aerial view of a small sandy cove with fishing boats near Gokarna](./images/coastal-karnataka/gokarna-cove.jpg)
 *One of the coves along Gokarna's cliff path, from above. Photo: [Raman Choudhary](https://unsplash.com/photos/MyCKTYn9A78) on Unsplash*
@@ -220,12 +202,12 @@ On top of this, budget ₹1,000–2,500 for the train or bus each way from Benga
 ## Good to know
 
 - **Monsoon changes everything.** From June to September the sea is closed to swimming, the St Mary's ferry and Netrani dives stop, and the Shiradi Ghat can close. The ghat train is at its greenest then, though.
-- **The sea here is stronger than it looks.** Rip currents drown swimmers every year at Murudeshwar, Maravanthe and Gokarna's Om Beach. Swim only where lifeguards are posted and the flags say so.
+- **The sea here is stronger than it looks.** Rip currents drown swimmers every year at Murudeshwar, Maravanthe and Gokarna's Om Beach. Swim only where lifeguards are posted and the flags say so. The sun is fierce on the water too: [reef-safe sunscreen](aff:amazon/s?k=reef+safe+sunscreen) is kinder to Netrani's coral.
 - **Temples have dress codes.** Cover shoulders and knees. At several temples, including Gokarna's Mahabaleshwar, men are asked to remove their shirts before the inner shrine.
 - **Book trains early.** The vistadome and the Panchaganga sell out weeks ahead over long weekends; check IRCTC for tatkal if you're late.
 - **Lunch homes run on lunch.** Many close between 15:00 and 19:00, and the best fish sells out by 14:00.
-- **UPI works almost everywhere,** but carry ₹1,000–2,000 in cash for boats, beach shacks and autos in Gokarna.
-- **Mobile signal drops** on the ghat section and on the Gokarna cliff path; download offline maps before you go.
+- **UPI works almost everywhere,** but carry ₹1,000–2,000 in cash for boats, beach shacks and autos in Gokarna. Visiting from abroad? An [Airalo India eSIM](aff:airalo/india-esim) gets you data the moment you land, and a policy like [SafetyWing](aff:safetywing/nomad-insurance) covers the dive and the scooter.
+- **Mobile signal drops** on the ghat section and on the Gokarna cliff path; download offline maps before you go, and keep a [power bank](aff:amazon/s?k=power+bank+10000mah) charged for the long train day.
 - **Respect the rituals.** Kambala races and Bhoota Kola performances are open to visitors, but ask before photographing anyone in costume, and never step into the performance space.
 
 ## Final word

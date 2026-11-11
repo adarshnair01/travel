@@ -2,7 +2,7 @@
 import { defineConfig } from "astro/config";
 import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
-import rehypeBook from "./src/lib/rehype-book.mjs";
+import rehypeAff from "./src/lib/rehype-aff.mjs";
 
 // Served from https://adarshnair.online/travel/ (GitHub Pages project site behind the
 // custom domain). If the GitHub repo has a different name, change `base` here and in src/site.ts.
@@ -16,7 +16,7 @@ export default defineConfig({
   markdown: {
     rehypePlugins: [
       rehypeSlug,
-      rehypeBook, // booking boxes from `book:` front matter (src/affiliates.mjs)
+      rehypeAff, // `aff:partner/path` links → tagged partner links (src/affiliates.mjs)
       [
         rehypeAutolinkHeadings,
         {
