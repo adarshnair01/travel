@@ -4,11 +4,12 @@ import rehypeSlug from "rehype-slug";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeAff from "./src/lib/rehype-aff.mjs";
 
-// Served from https://adarshnair.online/travel/ (GitHub Pages project site behind the
-// custom domain). If the GitHub repo has a different name, change `base` here and in src/site.ts.
+// Served from https://adarshnair.in/ (GitHub Pages project site with its own custom domain, set by
+// public/CNAME). Old https://adarshnair.online/travel/ URLs redirect here. If you ever serve it from a
+// sub-path again, set `base` here and in src/site.ts.
 export default defineConfig({
-  site: "https://adarshnair.online",
-  base: "/travel",
+  site: "https://adarshnair.in",
+  base: "/",
   trailingSlash: "always",
   build: { format: "directory" },
   prefetch: { prefetchAll: true, defaultStrategy: "hover" },

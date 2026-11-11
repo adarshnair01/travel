@@ -1,7 +1,7 @@
 ---
 # Copy this file to posts/YYYY-MM-DD-your-slug.md (the date prefix is what publishes it),
 # or generate one with the Story Desk: `cd generator && npm start`.
-# The URL becomes /travel/stories/<year>/<your-slug>/.
+# The URL becomes https://adarshnair.in/stories/<year>/<your-slug>/.
 # Every story uses the same fixed layout (generator/layout.mjs). Keep the ## headings below.
 title: "Three slow days in Hampi"
 date: 2026-12-01

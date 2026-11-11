@@ -1,7 +1,7 @@
 # Wander Notes: Adarsh Nair's travel blog
 
 Travel stories, routes and practical notes, built with [Astro](https://astro.build) and served at
-**https://adarshnair.online/travel/**.
+**https://adarshnair.in/** (it used to live at adarshnair.online/travel/, which now redirects).
 
 ## Writing a story
 
@@ -14,7 +14,7 @@ researched draft in the fixed layout: `cd generator && npm start`, then open htt
 2. Put photos in `posts/images/<your-slug>/` and reference them relative to the post
    (`cover: ./images/<your-slug>/cover.jpg`, `![alt](./images/<your-slug>/photo.jpg)`).
    Full-size JPEGs are fine: the build resizes them and converts them to WebP.
-3. Remove `draft: true` and push. The story appears at `/travel/stories/<year>/<your-slug>/`.
+3. Remove `draft: true` and push. The story appears at `/stories/<year>/<your-slug>/`.
 
 | Front matter | Used for |
 | --- | --- |
@@ -23,7 +23,7 @@ researched draft in the fixed layout: `cd generator && npm start`, then open htt
 | `place`, `country` | Location badge; `country` groups stories on **Places** |
 | `cover`, `coverAlt` | Full-bleed header photo, card image and social preview image |
 | `tripDates` | Free text such as "March 2026" |
-| `tags` | Topic pages under `/travel/tags/` |
+| `tags` | Topic pages under `/tags/` |
 | `draft` | `true` hides the story |
 
 Stories dated in the future stay hidden until a build on or after that date. The deploy workflow rebuilds daily.
@@ -35,7 +35,7 @@ Requires Node.js 22+ (24 recommended).
 ```bash
 cd site
 npm install
-npm run dev      # http://localhost:4321/travel/  (search needs a build)
+npm run dev      # http://localhost:4321/  (search needs a build)
 npm run build    # static site + Pagefind search index in site/dist/
 npm run preview  # serve the build, search included
 ```
@@ -43,7 +43,7 @@ npm run preview  # serve the build, search included
 ## What's in it
 
 - **Pages:** home (latest story + recent), all stories (paginated, by year), places, topics, about, privacy, 404.
-- **SEO:** canonical URLs, Open Graph/Twitter cards using each story's cover, JSON-LD (`BlogPosting` with location, `BreadcrumbList`, `Blog`, `ProfilePage`), `sitemap.xml`, RSS at `/travel/feed.xml`.
+- **SEO:** canonical URLs, Open Graph/Twitter cards using each story's cover, JSON-LD (`BlogPosting` with location, `BreadcrumbList`, `Blog`, `ProfilePage`), `sitemap.xml`, RSS at `/feed.xml`.
 - **Reading:** responsive WebP images, photo lightbox, reading progress, share (native/WhatsApp/X), related stories by country and tag, dark mode, ⌘K / `/` search.
 - **Analytics and ads:** GA4 and lazy AdSense, configured in `site/src/site.ts` (same IDs as the data science blog).
 - **Affiliate links:** picks are woven into stories as ordinary links written `[Name](aff:agoda/…)` or `[Name](aff:booking/…)`. Paste partner IDs, a Stay22 ID, or a Cuelinks/Travelpayouts deep-link template into `site/src/affiliates.mjs` and every such link starts earning on the next deploy; a disclosure line appears under the byline once any link earns. Clicks are tracked in GA4 as `affiliate_click`.
@@ -53,5 +53,5 @@ npm run preview  # serve the build, search included
 Pushing to `main` builds `site/` and publishes `site/dist/` to the `gh-pages` branch
 (`.github/workflows/deploy.yml`). In the repo's Settings → Pages, set the source to the `gh-pages` branch.
 
-The site expects the base path `/travel`, which means the GitHub repo should be named `travel`.
+The site is served from the root of its own custom domain, adarshnair.in, set by `site/public/CNAME`. DNS for adarshnair.in points at GitHub Pages (A records to 185.199.108–111.153, `www` CNAME to adarshnair01.github.io).
 With a different repo name, change `base` in both `site/astro.config.mjs` and `site/src/site.ts`.

@@ -6,8 +6,8 @@ export const SITE = {
     "Travel stories, itineraries and practical tips from the road by Adarsh Nair: where to go, how to get around and what it really costs.",
   author: "Adarsh Nair",
   homeBase: "Bengaluru, India",
-  origin: "https://adarshnair.online",
-  base: "/travel", // keep in sync with astro.config.mjs
+  origin: "https://adarshnair.in",
+  base: "", // served from the domain root; keep in sync with `base` in astro.config.mjs
   lang: "en",
   locale: "en_US",
   postsPerPage: 12,

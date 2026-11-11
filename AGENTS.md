@@ -1,6 +1,6 @@
 # Agent guidelines
 
-Travel blog of Adarsh Nair ("Wander Notes"), served at https://adarshnair.online/travel/. Built with **Astro** (static) in `site/`; stories live in `posts/` at the repo root. Sister project of the data science blog in `../blog`, with the same architecture.
+Travel blog of Adarsh Nair ("Wander Notes"), served at https://adarshnair.in/ (moved from adarshnair.online/travel/, which GitHub redirects here; the custom domain is set by `site/public/CNAME`). Built with **Astro** (static) in `site/`; stories live in `posts/` at the repo root. Sister project of the data science blog in `../blog`, with the same architecture.
 
 ## Layout
 
@@ -14,8 +14,8 @@ Travel blog of Adarsh Nair ("Wander Notes"), served at https://adarshnair.online
 
 ## Rules
 
-- Story URLs are `/travel/stories/<year>/<slug>/`. Don't change them once stories are live.
-- `base` lives in two places (`astro.config.mjs` and `site.ts`); keep them in sync.
+- Story URLs are `/stories/<year>/<slug>/`. Don't change them once stories are live.
+- `site`/`origin` and `base` live in two places (`astro.config.mjs` and `site.ts`); keep them in sync. The site is served from the domain root (`base: "/"` / `""`).
 - After changing dependencies, check the lockfile resolves on Linux: `npx npm@11 ci --dry-run --os=linux --cpu=x64 --libc=glibc`.
 - Drafts (`draft: true` or future dates) render in `npm run dev` only; the production build must keep excluding them.
 - Run `npm run build` in `site/` before committing.
