@@ -30,7 +30,7 @@ export const AFFILIATES = {
   makemytrip: { name: "MakeMyTrip", base: "https://www.makemytrip.com/", param: "", id: "", wrap: "", enabled: true },
   irctc: { name: "IRCTC", base: "https://www.irctc.co.in/", param: "", id: "", wrap: "", enabled: true }, // no affiliate programme
   // Gear
-  amazon: { name: "Amazon.in", base: "https://www.amazon.in/", param: "tag", id: "", wrap: "", enabled: true }, // Associates tag, e.g. "wandernotes-21"
+  amazon: { name: "Amazon.in", base: "https://www.amazon.in/", param: "tag", id: "travel0bb-21", wrap: "", enabled: true }, // Amazon Associates India tag
   // Visitors from abroad
   airalo: { name: "Airalo", base: "https://www.airalo.com/", param: "", id: "", wrap: "", enabled: true },
   safetywing: { name: "SafetyWing", base: "https://safetywing.com/", param: "referenceID", id: "", wrap: "", enabled: true },
