@@ -48,7 +48,7 @@ export const AFFILIATES = {
   hostelworld: { name: "Hostelworld", base: "https://www.hostelworld.com/", param: "", id: "", wrap: "", enabled: true },
   // Tours and activities
   getyourguide: { name: "GetYourGuide", base: "https://www.getyourguide.com/", param: "partner_id", id: "WOSNAHU", wrap: "", stay22: "getyourguide", enabled: true },
-  viator: { name: "Viator", base: "https://www.viator.com/", param: "pid", extra: { mcid: "42383", medium: "link" }, id: "", wrap: "", enabled: true },
+  viator: { name: "Viator", base: "https://www.viator.com/", param: "pid", extra: { uid: "U00889789", mcid: "58086" }, id: "P00331106", wrap: "", enabled: true }, // Travel Agent "Share with Client" (8%, 90-day window)
   klook: { name: "Klook", base: "https://www.klook.com/", param: "aid", id: "", wrap: "", enabled: true },
   tiqets: { name: "Tiqets", base: "https://www.tiqets.com/", param: "partner", id: "", wrap: "", enabled: true },
   // Getting there and around
