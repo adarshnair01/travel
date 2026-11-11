@@ -18,6 +18,10 @@ export const SITE = {
   // Travelpayouts Drive script (account 599055). Required by Travelpayouts; empty string removes it.
   travelpayoutsDrive: "https://emrldco.com/NTk5MDU1.js?t=599055",
 
+  // Public like / love / share counts on stories, stored as anonymous counters at Abacus
+  // (free, no account). Keys are "<year>-<slug>-like|love|share". Empty api hides the counts.
+  reactions: { api: "https://abacus.jasoncameron.dev", namespace: "wandernotes" },
+
   // Google AdSense. With only `client` set, Auto ads decides placement.
   // Paste "Display" ad-unit slot IDs below to control placement instead.
   adsense: {

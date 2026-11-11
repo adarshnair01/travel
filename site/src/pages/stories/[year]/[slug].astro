@@ -31,6 +31,18 @@ const affiliate = hasPaidLinks(post.entry.body);
 const pageUrl = absUrl(post.path);
 const og = cover ? await getImage({ src: cover, width: 1200, height: 630, fit: "cover", format: "jpg" }) : undefined;
 const ogImage = og ? new URL(og.src, SITE.origin).href : undefined;
+const reactKey = `${post.year}-${post.slug}`;
+const enc = encodeURIComponent;
+const shareText = `${post.title} ${pageUrl}`;
+const shareLinks = [
+  { net: "whatsapp", label: "WhatsApp", href: `https://wa.me/?text=${enc(shareText)}` },
+  { net: "facebook", label: "Facebook", href: `https://www.facebook.com/sharer/sharer.php?u=${enc(pageUrl)}` },
+  { net: "x", label: "X", href: `https://x.com/intent/post?url=${enc(pageUrl)}&text=${enc(post.title)}` },
+  { net: "telegram", label: "Telegram", href: `https://t.me/share/url?url=${enc(pageUrl)}&text=${enc(post.title)}` },
+  { net: "linkedin", label: "LinkedIn", href: `https://www.linkedin.com/sharing/share-offsite/?url=${enc(pageUrl)}` },
+  { net: "pinterest", label: "Pinterest", href: `https://pinterest.com/pin/create/button/?url=${enc(pageUrl)}&description=${enc(post.title)}${ogImage ? `&media=${enc(ogImage)}` : ""}` },
+  { net: "email", label: "Email", href: `mailto:?subject=${enc(post.title)}&body=${enc(`${post.description}\n\n${pageUrl}`)}` },
+];
 
 const jsonLd = [
   {
@@ -106,6 +118,7 @@ const jsonLd = [
           {tripDates && <span>{tripDates}</span>}
           <time datetime={post.date.toISOString()} data-pagefind-meta="date">{formatDate(post.date)}</time>
           <span>{post.readingMinutes} min read</span>
+          <span data-views hidden><b data-count="view">0</b> <span data-view-word>views</span></span>
         </div>
       </div>
     </header>
@@ -113,13 +126,16 @@ const jsonLd = [
     <div class="wrap narrow">
       <div class="story-tools" data-pagefind-ignore>
         <span class="muted">By {author}</span>
+        <a class="react-summary" href="#reactions" data-react-summary hidden aria-label="Likes, loves and shares">
+          <span>👍 <b data-count="like">0</b></span><span>❤️ <b data-count="love">0</b></span><span>↗ <b data-count="share">0</b></span>
+        </a>
         <div class="share">
           <button class="icon-btn" type="button" data-share aria-label="Share this story">
             <svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M4 12v7a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-7M16 6l-4-4-4 4M12 2v13" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path></svg>
             <span>Share</span>
           </button>
-          <a class="icon-btn" href={`https://wa.me/?text=${encodeURIComponent(`${post.title} ${pageUrl}`)}`} target="_blank" rel="noopener" aria-label="Share on WhatsApp">WA</a>
-          <a class="icon-btn" href={`https://x.com/intent/post?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener" aria-label="Share on X">𝕏</a>
+          <a class="icon-btn" href={shareLinks[0].href} target="_blank" rel="noopener" data-share-net="whatsapp" aria-label="Share on WhatsApp">WA</a>
+          <a class="icon-btn" href={shareLinks[2].href} target="_blank" rel="noopener" data-share-net="x" aria-label="Share on X">𝕏</a>
         </div>
       </div>
 
@@ -150,6 +166,26 @@ const jsonLd = [
 
       <div hidden data-insert-at="0.35" data-pagefind-ignore><AdSlot slot="inArticle" format="fluid" layout="in-article" /></div>
       <AdSlot slot="endOfPost" />
+
+      <section class="reactions" id="reactions" data-pagefind-ignore aria-labelledby="reactions-title">
+        <h2 id="reactions-title">Enjoyed this story?</h2>
+        <div class="react-row">
+          <button class="react-btn" type="button" data-react="like" aria-pressed="false">
+            <span aria-hidden="true">👍</span> Like <b data-count="like" hidden>0</b>
+          </button>
+          <button class="react-btn" type="button" data-react="love" aria-pressed="false">
+            <span aria-hidden="true">❤️</span> Love <b data-count="love" hidden>0</b>
+          </button>
+          <span class="share-tally" data-share-tally hidden>Shared <b data-count="share">0</b> <span data-share-word>times</span></span>
+        </div>
+        <p class="muted">Pass it on to someone planning a trip:</p>
+        <div class="share-row">
+          {shareLinks.map((l) => (
+            <a class:list={["share-btn", `share-${l.net}`]} href={l.href} target={l.net === "email" ? undefined : "_blank"} rel="noopener" data-share-net={l.net}>{l.label}</a>
+          ))}
+          <button class="share-btn" type="button" data-copy-link>Copy link</button>
+        </div>
+      </section>
 
       <footer class="post-foot" data-pagefind-ignore>
         {
@@ -190,7 +226,7 @@ const jsonLd = [
 
   <button class="icon-btn to-top" type="button" aria-label="Back to top" data-to-top>↑</button>
   <div class="toast" role="status" aria-live="polite"></div>
-  <script is:inline type="application/json" id="post-config" set:html={JSON.stringify({ title: post.title, url: pageUrl })} />
+  <script is:inline type="application/json" id="post-config" set:html={JSON.stringify({ title: post.title, url: pageUrl, react: SITE.reactions.api ? { api: SITE.reactions.api, ns: import.meta.env.DEV ? `${SITE.reactions.namespace}-dev` : SITE.reactions.namespace, key: reactKey } : null })} />
   <script>
     import { initPost } from "../../../lib/post-client";
     initPost();

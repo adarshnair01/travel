@@ -507,6 +507,118 @@ img {
   gap: 6px;
 }
 
+/* Likes, loves and shares */
+.react-summary {
+  display: inline-flex;
+  gap: 10px;
+  font-size: 13px;
+  color: var(--muted);
+  text-decoration: none;
+}
+.react-summary[hidden] {
+  display: none;
+}
+.react-summary b {
+  font-weight: 600;
+  color: var(--text-2);
+}
+.reactions {
+  margin: 40px 0 8px;
+  padding: 22px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-sunk);
+  text-align: center;
+}
+.reactions h2 {
+  margin: 0 0 14px;
+  font-family: var(--display);
+  font-size: 1.35rem;
+}
+.reactions > p {
+  margin: 18px 0 10px;
+  font-size: 14px;
+}
+.react-row,
+.share-row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+.react-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 18px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-elev);
+  color: var(--text);
+  font: inherit;
+  font-size: 15px;
+  cursor: pointer;
+  transition: transform 0.12s ease, border-color 0.12s ease;
+}
+.react-btn:hover {
+  border-color: var(--muted);
+}
+.react-btn:active {
+  transform: scale(0.96);
+}
+.react-btn.on {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+}
+.react-btn b {
+  font-weight: 600;
+  color: var(--text-2);
+}
+.react-btn b[hidden],
+.share-tally[hidden] {
+  display: none;
+}
+.share-tally {
+  font-size: 14px;
+  color: var(--muted);
+  padding: 0 6px;
+}
+.share-btn {
+  display: inline-flex;
+  align-items: center;
+  min-height: 38px;
+  padding: 0 14px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--bg-elev);
+  color: var(--text-2);
+  font: inherit;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+.share-btn:hover {
+  color: var(--text);
+  border-color: var(--muted);
+}
+.share-btn.share-whatsapp {
+  background: #25d366;
+  border-color: #25d366;
+  color: #0b2e1a;
+  font-weight: 600;
+}
+@media (max-width: 560px) {
+  .story-tools {
+    flex-wrap: wrap;
+  }
+  .react-summary {
+    order: 3;
+    width: 100%;
+  }
+}
+
 .prose {
   font-family: var(--serif);
   font-size: 1.14rem;
@@ -1304,4 +1416,10 @@ kbd {
   vertical-align: 0.15em;
   opacity: 0.55;
   text-decoration: none;
+}
+.meta [data-views][hidden] {
+  display: none;
+}
+.meta [data-views] b {
+  font-weight: inherit;
 }
