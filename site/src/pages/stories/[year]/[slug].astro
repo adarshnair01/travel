@@ -6,6 +6,7 @@ import StoryCard from "../../../components/StoryCard.astro";
 import AdSlot from "../../../components/AdSlot.astro";
 import { getPosts, relatedPosts, formatDate, slugify, placeLabel, type Post } from "../../../lib/posts";
 import { SITE, url, absUrl } from "../../../site";
+import { hasPaidLinks } from "../../../affiliates.mjs";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
@@ -26,6 +27,7 @@ const toc = headings.filter((h) => h.depth === 2);
 const related = relatedPosts(post, await getPosts(), 3);
 const { cover, coverAlt, tripDates, author } = post.entry.data;
 const where = placeLabel(post);
+const affiliate = hasPaidLinks(post.entry.data.book);
 const pageUrl = absUrl(post.path);
 const og = cover ? await getImage({ src: cover, width: 1200, height: 630, fit: "cover", format: "jpg" }) : undefined;
 const ogImage = og ? new URL(og.src, SITE.origin).href : undefined;
@@ -120,6 +122,14 @@ const jsonLd = [
           <a class="icon-btn" href={`https://x.com/intent/post?url=${encodeURIComponent(pageUrl)}&text=${encodeURIComponent(post.title)}`} target="_blank" rel="noopener" aria-label="Share on X">𝕏</a>
         </div>
       </div>
+
+      {
+        affiliate && (
+          <p class="aff-disclosure" data-pagefind-ignore>
+            Some links in this story are affiliate links. If you book or buy through them, the blog earns a small commission at no extra cost to you. I only link to things I'd use myself.
+          </p>
+        )
+      }
 
       {
         toc.length > 2 && (

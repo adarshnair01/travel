@@ -8,6 +8,26 @@ country: "India"
 cover: ./images/coastal-karnataka/cover.jpg
 coverAlt: "A green headland and rocky shore above the Arabian Sea at Gokarna"
 tags: ["karnataka", "beaches", "road trip", "itinerary", "from bengaluru"]
+book:
+  bus: { from: "Bengaluru", to: "Mangaluru", fromSlug: "bangalore", toSlug: "mangalore" }
+  flight: { from: "Bengaluru", to: "Mangaluru", fromSlug: "bangalore", toSlug: "mangalore" }
+  train: "Trains via the Sakleshpur ghats"
+  stays:
+    - { area: "Mangaluru", agoda: "mangalore-in", search: "Mangalore" }
+    - { area: "Udupi and Malpe", agoda: "udupi-in", search: "Udupi" }
+    - { area: "Murudeshwar", search: "Murudeshwar" }
+    - { area: "Gokarna", note: "Beach cafés with rooms at Kudle and Om", agoda: "gokarna-in", search: "Gokarna", hostelworld: "asia/india/gokarna" }
+  activities:
+    - { label: "Netrani Island scuba or snorkel trip", note: "Book a day ahead; peak prices Dec to mid-Jan", query: "Murudeshwar scuba diving" }
+    - { label: "Mangaluru food and city tours", query: "Mangalore" }
+    - { label: "Gokarna beach treks and tours", query: "Gokarna" }
+  gear:
+    - { label: "Dry bag", query: "dry bag 10 litre" }
+    - { label: "Reef-safe sunscreen", query: "reef safe sunscreen spf 50" }
+    - { label: "Trekking sandals", query: "trekking sandals" }
+    - { label: "Quick-dry towel", query: "microfiber quick dry travel towel" }
+    - { label: "Power bank", query: "power bank 10000mah" }
+  abroad: true
 ---
 
 Somewhere past Sakleshpur, the train slows to a crawl and goes dark. It comes out of the tunnel onto a bridge over a gorge so deep that the whole vistadome coach goes quiet at once. For the next two hours it carries on like that: tunnel, bridge, waterfall, tunnel. Then the hills give way to areca palms and red-tiled roofs, and the air through the door smells of salt and frying fish. Bengaluru left at seven in the morning. By late afternoon you're in Mangaluru.

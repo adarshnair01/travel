@@ -27,6 +27,18 @@ const posts = defineCollection({
       tags: z.union([z.array(z.coerce.string()), z.string()]).optional(),
       author: z.string().default("Adarsh Nair"),
       draft: z.boolean().optional(),
+      /** Booking boxes added to the story (see src/affiliates.mjs and posts/_template.md). */
+      book: z
+        .object({
+          bus: z.object({ from: z.string(), to: z.string(), fromSlug: z.string().optional(), toSlug: z.string().optional(), label: z.string().optional() }).optional(),
+          flight: z.object({ from: z.string(), to: z.string(), fromSlug: z.string().optional(), toSlug: z.string().optional(), label: z.string().optional() }).optional(),
+          train: z.union([z.boolean(), z.string()]).optional(),
+          stays: z.array(z.object({ area: z.string(), note: z.string().optional(), search: z.string().optional(), agoda: z.string().optional(), hostelworld: z.string().optional() })).optional(),
+          activities: z.array(z.object({ label: z.string(), query: z.string(), note: z.string().optional() })).optional(),
+          gear: z.array(z.object({ label: z.string(), query: z.string().optional() })).optional(),
+          abroad: z.boolean().optional(),
+        })
+        .optional(),
     }),
 });
 
