@@ -8,7 +8,7 @@ Travel blog of Adarsh Nair ("Wander Notes"), served at https://adarshnair.online
 - `posts/images/<slug>/`: story photos, referenced relative to the post so Astro optimises them.
 - `site/src/content.config.ts`: front-matter schema. `site/src/lib/posts.ts`: loading, URLs, related stories.
 - `site/src/site.ts`: name, nav, socials, GA4 and AdSense IDs. `site/src/styles/global.css`: all styling.
-- `site/src/affiliates.mjs`: affiliate partners and IDs. Stories link to picks with `[Name](aff:partner/path)`; `site/src/lib/rehype-aff.mjs` resolves them at build time (tracking ID, `rel="sponsored"` when earning, `nofollow` otherwise, GA4 `affiliate_click`). Picks must be real listings checked for rating, reviews and price; never let the Story Desk invent them.
+- `site/src/affiliates.mjs`: affiliate partners and IDs. Stories link to picks with `[Name](aff:partner/path)`; `site/src/lib/rehype-aff.mjs` resolves them at build time (tracking ID, `rel="sponsored"` when earning, `nofollow` otherwise, GA4 `affiliate_click`). Picks must be real listings checked for rating, reviews and price, quoting the rating from the site the link goes to; never let the Story Desk invent them. Hotels in India/Asia link to Agoda by hotel ID; elsewhere to Booking.com/Expedia/Vrbo, which earn through Stay22 (`STAY22_AID`). The file header lists which partner fits each kind of link.
 - `generator/`: local-only Story Desk (Node, no deps, Gemini). `layout.mjs` is the single source of the fixed post layout; keep `posts/_template.md` and the `.prose h2#…` rules in `global.css` in step with it. Never deploy it or add it to `site/`.
 - `photos/`: raw personal photo dump from the old site. Not part of the build.
 

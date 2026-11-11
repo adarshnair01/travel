@@ -46,7 +46,7 @@ npm run preview  # serve the build, search included
 - **SEO:** canonical URLs, Open Graph/Twitter cards using each story's cover, JSON-LD (`BlogPosting` with location, `BreadcrumbList`, `Blog`, `ProfilePage`), `sitemap.xml`, RSS at `/travel/feed.xml`.
 - **Reading:** responsive WebP images, photo lightbox, reading progress, share (native/WhatsApp/X), related stories by country and tag, dark mode, ⌘K / `/` search.
 - **Analytics and ads:** GA4 and lazy AdSense, configured in `site/src/site.ts` (same IDs as the data science blog).
-- **Affiliate links:** picks are woven into stories as ordinary links written `[Name](aff:booking/hotel/in/…)`. Paste partner IDs (or a Cuelinks/Travelpayouts deep-link template) into `site/src/affiliates.mjs` and every such link starts earning on the next deploy; a disclosure line appears under the byline once any link earns. Clicks are tracked in GA4 as `affiliate_click`.
+- **Affiliate links:** picks are woven into stories as ordinary links written `[Name](aff:agoda/…)` or `[Name](aff:booking/…)`. Paste partner IDs, a Stay22 ID, or a Cuelinks/Travelpayouts deep-link template into `site/src/affiliates.mjs` and every such link starts earning on the next deploy; a disclosure line appears under the byline once any link earns. Clicks are tracked in GA4 as `affiliate_click`.
 
 ## Deploy
 

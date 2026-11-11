@@ -42,8 +42,10 @@ Open with a vivid moment from the trip. Then say who this place is for.
 ## Where to stay
 
 <!-- Affiliate picks are ordinary links written as aff:<partner>/<path on their site>, e.g.
-     [ArtKarna](aff:booking/hotel/in/art-karna-gokarna.html) or [a dry bag](aff:amazon/s?k=dry+bag).
-     Only link real listings you've checked (rating, reviews, price). Partners: site/src/affiliates.mjs. -->
+     [ArtKarna](aff:agoda/partners/partnersearch.aspx?pcs=1&hid=58936899) for India and Asia,
+     [a Paris hotel](aff:booking/hotel/fr/…) elsewhere, or [a dry bag](aff:amazon/s?k=dry+bag).
+     Only link real listings you've checked, and quote the rating from the site you link to.
+     Which partner fits where: the header of site/src/affiliates.mjs. -->
 
 ## Top things to do
 
