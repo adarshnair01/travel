@@ -6,6 +6,11 @@
 title: "Three slow days in Hampi"
 date: 2026-12-01
 description: "One or two sentences for the card, search results and social previews."
+# Optional, for search engines: a shorter title (60 characters or fewer, lead with the main search
+# phrase, e.g. "Hampi Itinerary: 3 Days...") and a 120–160 character description. Both default to
+# title/description. Add `updated: YYYY-MM-DD` when you meaningfully revise a published story.
+seoTitle: "Hampi Itinerary: 3 Slow Days Among the Ruins"
+seoDescription: "A 3-day Hampi itinerary with where to stay, what it costs and how to get there."
 place: "Hampi"
 country: "India"
 tripDates: "December 2026"

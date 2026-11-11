@@ -1,7 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import StoryCard from "../../components/StoryCard.astro";
-import { getPosts, collectTags, slugify, type Post, type Term } from "../../lib/posts";
+import { getPosts, collectTags, slugify, clamp, type Post, type Term } from "../../lib/posts";
 import { url } from "../../site";
 
 export async function getStaticPaths() {
@@ -18,7 +18,7 @@ interface Props {
 const { term, posts } = Astro.props;
 ---
 
-<Base title={`${term.name} stories`} description={`Travel stories about ${term.name}.`} path={`/tags/${term.slug}/`} noindex={posts.length < 2}>
+<Base title={`${term.name} stories`} description={clamp(`${posts.length} ${posts.length === 1 ? "travel story" : "travel stories"} about ${term.name} on Wander Notes: ${posts.slice(0, 3).map((p) => p.title).join("; ")}.`)} path={`/tags/${term.slug}/`} noindex={posts.length < 2}>
   <div class="wrap">
     <header class="page-head">
       <p class="eyebrow"><a href={url("/tags/")}>Topics</a></p>

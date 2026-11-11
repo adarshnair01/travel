@@ -1,7 +1,7 @@
 ---
 import Base from "../../../layouts/Base.astro";
 import StoryCard from "../../../components/StoryCard.astro";
-import { getPosts, type Post } from "../../../lib/posts";
+import { getPosts, clamp, type Post } from "../../../lib/posts";
 import { url } from "../../../site";
 
 export async function getStaticPaths() {
@@ -17,7 +17,7 @@ interface Props {
 const { year, posts, years } = Astro.props;
 ---
 
-<Base title={`Stories from ${year}`} description={`${posts.length} travel ${posts.length === 1 ? "story" : "stories"} published in ${year}.`} path={`/stories/${year}/`}>
+<Base title={`Stories from ${year}`} description={clamp(`${posts.length} travel ${posts.length === 1 ? "story" : "stories"} published in ${year}, including ${posts.slice(0, 3).map((p) => p.title).join("; ")}.`)} path={`/stories/${year}/`}>
   <div class="wrap">
     <header class="page-head">
       <p class="eyebrow"><a href={url("/stories/")}>Stories</a></p>

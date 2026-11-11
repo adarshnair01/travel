@@ -15,6 +15,12 @@ const posts = defineCollection({
       title: z.string(),
       date: z.coerce.date(),
       description: z.string().optional(),
+      /** Shorter title for search results and social cards (aim for 60 characters or fewer). */
+      seoTitle: z.string().optional(),
+      /** Meta description for search results (aim for 120–160 characters). Falls back to description. */
+      seoDescription: z.string().optional(),
+      /** Date the story was last meaningfully updated; shown to search engines as dateModified. */
+      updated: z.coerce.date().optional(),
       /** Where the story happens, e.g. "Kyoto". */
       place: z.string().optional(),
       /** Country — groups stories on the Places page. */

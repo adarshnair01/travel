@@ -1,7 +1,7 @@
 ---
 import Base from "../../layouts/Base.astro";
 import StoryCard from "../../components/StoryCard.astro";
-import { getPosts, collectCountries, slugify, type Post, type Term } from "../../lib/posts";
+import { getPosts, collectCountries, slugify, clamp, type Post, type Term } from "../../lib/posts";
 import { url } from "../../site";
 
 export async function getStaticPaths() {
@@ -20,7 +20,7 @@ const { term, posts } = Astro.props;
 
 <Base
   title={`${term.name} travel stories`}
-  description={`${posts.length} ${posts.length === 1 ? "story" : "stories"} from ${term.name}: ${posts.slice(0, 3).map((p) => p.title).join("; ")}.`.slice(0, 300)}
+  description={clamp(`${term.name} travel guides and itineraries: ${posts.slice(0, 3).map((p) => p.title).join("; ")}.`)}
   path={`/places/${term.slug}/`}
 >
   <div class="wrap">

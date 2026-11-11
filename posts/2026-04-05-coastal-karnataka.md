@@ -1,7 +1,10 @@
 ---
 title: "Bengaluru to the sea: six days down the Karnataka coast"
-date: 2026-11-10
+date: 2026-04-05
+updated: 2026-11-11
 description: "A six-day route from Bengaluru through the Western Ghats to Mangaluru, Udupi, Murudeshwar and Gokarna, with real fares, ferry timings and what to eat at every stop."
+seoTitle: "Karnataka Coast Road Trip: 6 Days from Bengaluru"
+seoDescription: "A 6-day Karnataka coast itinerary from Bengaluru: Mangaluru, Udupi, Murudeshwar and Gokarna, with real fares, ferry timings and what to eat at every stop."
 place: "Coastal Karnataka"
 country: "India"
 # tripDates: "Month YYYY"

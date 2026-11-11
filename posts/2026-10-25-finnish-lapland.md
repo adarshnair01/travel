@@ -1,7 +1,10 @@
 ---
 title: "Finnish Lapland in ten days: Helsinki, Rovaniemi and Saariselkä in January"
-date: 2026-11-11
+date: 2026-10-25
+updated: 2026-11-11
 description: "Ten winter days in Finland from the US: a night in Helsinki, the Santa Claus Express to Rovaniemi, then north to Saariselkä and Inari for huskies, reindeer, snowshoes and the northern lights, with real prices in dollars, checked hotels and the tours worth booking."
+seoTitle: "Finnish Lapland Itinerary: 10 Days in Winter"
+seoDescription: "A 10-day Finnish Lapland winter trip from the US: Helsinki, the Santa Claus Express, Rovaniemi and Saariselkä for huskies, reindeer and the northern lights."
 place: "Helsinki, Rovaniemi and Saariselkä"
 country: "Finland"
 cover: ./images/finnish-lapland/cover.jpg

@@ -54,7 +54,7 @@ const jsonLd = [
               {featured.entry.data.cover ? (
                 <Image
                   src={featured.entry.data.cover}
-                  alt=""
+                  alt={featured.entry.data.coverAlt ?? ""}
                   layout="full-width"
                   widths={[640, 960, 1280]}
                   sizes="(min-width: 900px) 60vw, 100vw"

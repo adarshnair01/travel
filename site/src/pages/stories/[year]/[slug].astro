@@ -49,16 +49,19 @@ const jsonLd = [
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     headline: post.title,
-    description: post.description,
+    description: post.seoDescription,
     datePublished: post.date.toISOString(),
-    dateModified: post.date.toISOString(),
+    dateModified: (post.updated ?? post.date).toISOString(),
     mainEntityOfPage: { "@type": "WebPage", "@id": pageUrl },
     url: pageUrl,
-    ...(ogImage ? { image: ogImage } : {}),
+    ...(ogImage ? { image: { "@type": "ImageObject", url: ogImage, width: 1200, height: 630, ...(coverAlt ? { caption: coverAlt } : {}) } } : {}),
     wordCount: post.wordCount,
     keywords: post.tags.join(", "),
     inLanguage: SITE.lang,
-    ...(where ? { contentLocation: { "@type": "Place", name: where } } : {}),
+    ...(where
+      ? { contentLocation: { "@type": "Place", name: where, ...(post.country ? { address: { "@type": "PostalAddress", addressCountry: post.country } } : {}) } }
+      : {}),
+    articleSection: "Travel",
     author: { "@type": "Person", name: author, url: absUrl("/about/"), sameAs: [SITE.socials.linkedin, SITE.socials.github] },
     publisher: { "@type": "Person", name: SITE.author, url: SITE.socials.website },
   },
@@ -77,13 +80,17 @@ const jsonLd = [
 ---
 
 <Base
-  title={post.title}
-  description={post.description}
+  title={post.seoTitle}
+  description={post.seoDescription}
   path={post.path}
   type="article"
   image={ogImage}
+  imageAlt={coverAlt}
+  imageWidth={ogImage ? 1200 : undefined}
+  imageHeight={ogImage ? 630 : undefined}
   jsonLd={jsonLd}
   published={post.date}
+  modified={post.updated}
   tags={post.tags}
 >
   <div class="progress" aria-hidden="true"></div>
@@ -117,6 +124,9 @@ const jsonLd = [
           {where && <span>📍 {where}</span>}
           {tripDates && <span>{tripDates}</span>}
           <time datetime={post.date.toISOString()} data-pagefind-meta="date">{formatDate(post.date)}</time>
+          {post.updated && post.updated.valueOf() > post.date.valueOf() && (
+            <span>Updated <time datetime={post.updated.toISOString()}>{formatDate(post.updated)}</time></span>
+          )}
           <span>{post.readingMinutes} min read</span>
           <span data-views hidden><b data-count="view">0</b> <span data-view-word>views</span></span>
         </div>

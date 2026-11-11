@@ -11,6 +11,10 @@ export interface Post {
   title: string;
   date: Date;
   description: string;
+  /** Title and description for <title>, meta description and social cards. */
+  seoTitle: string;
+  seoDescription: string;
+  updated?: Date;
   place?: string;
   country?: string;
   tags: string[];
@@ -85,6 +89,9 @@ export async function getPosts(): Promise<Post[]> {
       title: entry.data.title,
       date: entry.data.date,
       description: entry.data.description ?? clamp(firstParagraph(body)),
+      seoTitle: entry.data.seoTitle ?? entry.data.title,
+      seoDescription: clamp(entry.data.seoDescription ?? entry.data.description ?? firstParagraph(body), 160),
+      updated: entry.data.updated,
       place: entry.data.place,
       country: entry.data.country,
       tags: toList(entry.data.tags),

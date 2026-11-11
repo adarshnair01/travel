@@ -3,7 +3,7 @@ import Base from "../layouts/Base.astro";
 import StoryCard from "./StoryCard.astro";
 import Pagination from "./Pagination.astro";
 import EmptyState from "./EmptyState.astro";
-import { getPosts } from "../lib/posts";
+import { getPosts, collectCountries } from "../lib/posts";
 import { SITE, url } from "../site";
 
 interface Props {
@@ -16,11 +16,12 @@ const total = Math.max(1, Math.ceil(all.length / per));
 const pathFor = (n: number) => (n === 1 ? "/stories/" : `/stories/page/${n}/`);
 const list = all.slice((page - 1) * per, page * per);
 const years = [...new Set(all.map((p) => p.year))];
+const countryNames = collectCountries(all).map((c) => c.name);
 ---
 
 <Base
   title={page === 1 ? "All stories" : `Stories — page ${page}`}
-  description={`Every travel story on ${SITE.blogName}${page > 1 ? `, page ${page} of ${total}` : ""}.`}
+  description={`All ${all.length} travel stories on ${SITE.blogName}: day-by-day itineraries, real costs and practical tips from ${countryNames.join(", ")}${page > 1 ? `. Page ${page} of ${total}` : ""}.`}
   path={pathFor(page)}
   prev={page > 1 ? pathFor(page - 1) : undefined}
   next={page < total ? pathFor(page + 1) : undefined}
