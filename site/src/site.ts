@@ -39,9 +39,22 @@ export const SITE = {
     blog: "https://adarshnair.online/blog/",
     website: "https://adarshnair.online",
   },
+  // Story series. A story joins one with `series: <key>` in its front matter and is listed on the
+  // series page as well as with all stories. Series stories are free-form (no fixed layout).
+  series: {
+    "incredible-india": {
+      label: "Incredible India",
+      path: "/incredible-india/",
+      eyebrow: "Incredible India",
+      heading: "Stories behind India's places",
+      intro:
+        "Forts with curses, temples built overnight, stepwells, lost cities and the legends that still hang over them. Short, true stories about places in India and the history most visitors never hear: one for each evening.",
+    },
+  },
   nav: [
     { href: "/", label: "Home" },
     { href: "/stories/", label: "Stories" },
+    { href: "/incredible-india/", label: "Incredible India" },
     { href: "/places/", label: "Places" },
     { href: "/about/", label: "About" },
   ],

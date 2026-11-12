@@ -1,0 +1,30 @@
+---
+import Base from "../../layouts/Base.astro";
+import StoryCard from "../../components/StoryCard.astro";
+import EmptyState from "../../components/EmptyState.astro";
+import { getPosts } from "../../lib/posts";
+import { SITE, url } from "../../site";
+
+const key = "incredible-india";
+const series = SITE.series[key];
+const list = (await getPosts()).filter((p) => p.series === key);
+---
+
+<Base title={series.label} description={series.intro} path={series.path} noindex={list.length === 0}>
+  <div class="wrap">
+    <header class="page-head">
+      <p class="eyebrow">{series.eyebrow}</p>
+      <h1>{series.heading}</h1>
+      <p>{series.intro}</p>
+    </header>
+    {
+      list.length ? (
+        <div class="story-grid">{list.map((p, i) => <StoryCard post={p} eager={i < 3} />)}</div>
+      ) : (
+        <EmptyState title="The first story is on its way">
+          New stories about India's places and their history are coming soon. Meanwhile, read the <a href={url("/places/india/")}>travel stories from India</a>.
+        </EmptyState>
+      )
+    }
+  </div>
+</Base>

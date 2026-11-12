@@ -34,6 +34,9 @@ export const GET: APIRoute = async () => {
           })),
         ]
       : []),
+    ...Object.entries(SITE.series)
+      .filter(([key]) => posts.some((p) => p.series === key))
+      .map(([, s]) => ({ loc: absUrl(s.path) })),
     ...(countries.length ? [{ loc: absUrl("/places/") }] : []),
     ...countries.map((c) => ({ loc: absUrl(`/places/${c.slug}/`) })),
     ...collectTags(posts)

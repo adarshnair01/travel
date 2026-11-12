@@ -1423,3 +1423,139 @@ kbd {
 .meta [data-views] b {
   font-weight: inherit;
 }
+
+/* ---------- Series stories (SITE.series), e.g. Incredible India ---------- */
+.series-badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--accent-2);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 2px 10px;
+  border-radius: 999px;
+}
+.story-hero.has-cover .series-eyebrow {
+  color: #ffd9c4;
+}
+.fact-file {
+  margin: 0 0 1.5rem;
+  padding: 18px 20px;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent-2);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+  font-family: var(--sans);
+}
+.fact-file h2 {
+  margin: 0 0 10px;
+  font-size: 12px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+}
+.fact-file dl {
+  margin: 0;
+  display: grid;
+  gap: 8px;
+}
+.fact-file dl > div {
+  display: grid;
+  grid-template-columns: minmax(90px, 30%) 1fr;
+  gap: 12px;
+}
+.fact-file dt {
+  color: var(--muted);
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+.fact-file dd {
+  margin: 0;
+  font-size: 0.95rem;
+}
+.series-story .prose > p:first-of-type::first-letter {
+  float: left;
+  font-family: var(--display);
+  font-size: 3.6em;
+  line-height: 0.85;
+  margin: 0.08em 0.1em 0 0;
+  color: var(--accent-2);
+}
+.series-story .prose {
+  counter-reset: chapter;
+}
+.series-story .prose h2:not(#legend-or-history, #local-tellings, #things-you-probably-didnt-know, #timeline, #if-you-go, #sources) {
+  counter-increment: chapter;
+  font-family: var(--display);
+  font-size: 1.7rem;
+  padding-top: 1.2em;
+  border-top: 1px solid var(--line);
+}
+.series-story .prose h2:not(#legend-or-history, #local-tellings, #things-you-probably-didnt-know, #timeline, #if-you-go, #sources)::before {
+  content: "Chapter " counter(chapter, upper-roman);
+  display: block;
+  font: 600 12px/1.4 var(--sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin-bottom: 4px;
+}
+.series-story .prose h2#timeline + ul {
+  list-style: none;
+  padding: 0 0 0 22px;
+  border-left: 2px solid var(--line);
+  font-family: var(--sans);
+}
+.series-story .prose h2#timeline + ul > li {
+  position: relative;
+  margin: 0 0 14px;
+}
+.series-story .prose h2#timeline + ul > li::before {
+  content: "";
+  position: absolute;
+  left: -29px;
+  top: 0.45em;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--accent-2);
+}
+.series-story .prose h2#timeline + ul strong {
+  display: block;
+  color: var(--accent-2);
+}
+.series-story .prose h2#if-you-go ~ *:not(#sources, #sources ~ *, h2#if-you-go ~ p:last-child) {
+  padding-left: 16px;
+  border-left: 3px solid var(--accent);
+}
+.series-story .prose h2#local-tellings::before {
+  content: "🗣 ";
+}
+.series-story .prose h2#local-tellings + p {
+  font-family: var(--sans);
+  font-size: 0.9rem;
+  color: var(--muted);
+}
+.series-story .prose h2#local-tellings ~ ul:not(#things-you-probably-didnt-know ~ ul) {
+  list-style: none;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+.series-story .prose h2#local-tellings ~ ul:not(#things-you-probably-didnt-know ~ ul) > li {
+  margin: 0;
+  padding: 14px 16px;
+  border: 1px dashed var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-sunk);
+}
+.series-story .prose h2#legend-or-history ~ blockquote:not(#local-tellings ~ blockquote)::before {
+  content: "The legend";
+  display: block;
+  font: 600 11px/1.4 var(--sans);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent-2);
+  margin: 0.6em 0 0.2em;
+}

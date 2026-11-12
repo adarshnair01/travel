@@ -21,6 +21,10 @@ export interface Post {
   readingMinutes: number;
   wordCount: number;
   draft: boolean;
+  /** Series key from SITE.series, if the story belongs to one. */
+  series?: string;
+  /** Position in its series, oldest first (1, 2, 3…). */
+  seriesNo?: number;
 }
 
 export function slugify(s: string): string {
@@ -98,10 +102,20 @@ export async function getPosts(): Promise<Post[]> {
       readingMinutes: Math.max(1, Math.round(words / 230)),
       wordCount: words,
       draft: !!entry.data.draft || entry.data.date.valueOf() > now,
+      series: entry.data.series,
     };
   });
 
   posts.sort((a, b) => b.date.valueOf() - a.date.valueOf() || b.id.localeCompare(a.id));
+
+  // Number each series' stories in publishing order.
+  const counts = new Map<string, number>();
+  for (const p of [...posts].reverse()) {
+    if (!p.series) continue;
+    const n = (counts.get(p.series) ?? 0) + 1;
+    counts.set(p.series, n);
+    p.seriesNo = n;
+  }
 
   // Two files can map to the same URL; older ones get a numeric suffix.
   const seen = new Map<string, number>();
@@ -142,6 +156,11 @@ function collect(names: string[]): Term[] {
     map.set(slug, t);
   }
   return [...map.values()].sort((a, b) => b.count - a.count || a.name.localeCompare(b.name));
+}
+
+/** Stories in the same series, newest first. */
+export function seriesPosts(all: Post[], series: string): Post[] {
+  return all.filter((p) => p.series === series);
 }
 
 /** Same country first, then shared tags. */

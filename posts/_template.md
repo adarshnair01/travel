@@ -18,6 +18,10 @@ tripDates: "December 2026"
 cover: ./images/hampi/cover.jpg
 coverAlt: "Boulders and temple towers at sunrise"
 tags: [karnataka, history, itinerary]
+# Optional: put the story in a series, listed on its own page as well as with all stories.
+# "incredible-india" = history and lesser-known facts about a place in India, told as a story.
+# Series stories are free-form: they don't follow the fixed itinerary layout below.
+# series: incredible-india
 draft: true # remove this line (or set false) to publish
 ---
 

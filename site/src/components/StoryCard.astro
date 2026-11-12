@@ -2,7 +2,7 @@
 import { Image } from "astro:assets";
 import type { Post } from "../lib/posts";
 import { formatDate, placeLabel } from "../lib/posts";
-import { url } from "../site";
+import { SITE, url } from "../site";
 
 interface Props {
   post: Post;
@@ -38,6 +38,7 @@ const where = placeLabel(post);
     }
     {where && <span class="story-place">{where}</span>}
     {post.draft && <span class="draft-badge">Draft</span>}
+    {post.series && <span class="series-badge">{SITE.series[post.series as keyof typeof SITE.series]?.label} · No. {post.seriesNo}</span>}
   </div>
   <div class="story-body">
     <div class="meta">

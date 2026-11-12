@@ -33,6 +33,12 @@ const posts = defineCollection({
       tags: z.union([z.array(z.coerce.string()), z.string()]).optional(),
       author: z.string().default("Adarsh Nair"),
       draft: z.boolean().optional(),
+      /** Story series this belongs to, e.g. "incredible-india" (see SITE.series). */
+      series: z.enum(["incredible-india"]).optional(),
+      /** Series stories: when the place dates from, e.g. "8th century CE". Shown in the hero. */
+      era: z.string().optional(),
+      /** Series stories: the "Fact file" card, 4–6 short label/value rows. */
+      facts: z.array(z.object({ label: z.string(), value: z.string() })).optional(),
     }),
 });
 

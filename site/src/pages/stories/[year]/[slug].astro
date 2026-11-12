@@ -4,16 +4,21 @@ import { Image, getImage } from "astro:assets";
 import Base from "../../../layouts/Base.astro";
 import StoryCard from "../../../components/StoryCard.astro";
 import AdSlot from "../../../components/AdSlot.astro";
-import { getPosts, relatedPosts, formatDate, slugify, placeLabel, type Post } from "../../../lib/posts";
+import { getPosts, relatedPosts, seriesPosts, formatDate, slugify, placeLabel, type Post } from "../../../lib/posts";
 import { SITE, url, absUrl } from "../../../site";
 import { hasPaidLinks } from "../../../affiliates.mjs";
 
 export async function getStaticPaths() {
   const posts = await getPosts();
-  return posts.map((post, i) => ({
-    params: { year: post.year, slug: post.slug },
-    props: { post, newer: posts[i - 1], older: posts[i + 1] },
-  }));
+  return posts.map((post) => {
+    // Series stories page through their own series; everything else through all stories.
+    const list = post.series ? seriesPosts(posts, post.series) : posts;
+    const i = list.indexOf(post);
+    return {
+      params: { year: post.year, slug: post.slug },
+      props: { post, newer: list[i - 1], older: list[i + 1] },
+    };
+  });
 }
 
 interface Props {
@@ -24,9 +29,12 @@ interface Props {
 const { post, newer, older } = Astro.props;
 const { Content, headings } = await render(post.entry);
 const toc = headings.filter((h) => h.depth === 2);
-const related = relatedPosts(post, await getPosts(), 3);
-const { cover, coverAlt, tripDates, author } = post.entry.data;
+const allPosts = await getPosts();
+const sameSeries = post.series ? seriesPosts(allPosts, post.series).filter((p) => p.id !== post.id).slice(0, 3) : [];
+const related = sameSeries.length ? sameSeries : relatedPosts(post, allPosts, 3);
+const { cover, coverAlt, tripDates, author, era, facts } = post.entry.data;
 const where = placeLabel(post);
+const series = post.series ? SITE.series[post.series as keyof typeof SITE.series] : undefined;
 const affiliate = hasPaidLinks(post.entry.body);
 const pageUrl = absUrl(post.path);
 const og = cover ? await getImage({ src: cover, width: 1200, height: 630, fit: "cover", format: "jpg" }) : undefined;
@@ -61,7 +69,7 @@ const jsonLd = [
     ...(where
       ? { contentLocation: { "@type": "Place", name: where, ...(post.country ? { address: { "@type": "PostalAddress", addressCountry: post.country } } : {}) } }
       : {}),
-    articleSection: "Travel",
+    articleSection: series?.label ?? "Travel",
     author: { "@type": "Person", name: author, url: absUrl("/about/"), sameAs: [SITE.socials.linkedin, SITE.socials.github] },
     publisher: { "@type": "Person", name: SITE.author, url: SITE.socials.website },
   },
@@ -94,7 +102,7 @@ const jsonLd = [
   tags={post.tags}
 >
   <div class="progress" aria-hidden="true"></div>
-  <article data-pagefind-body>
+  <article data-pagefind-body class:list={[{ "series-story": series }, post.series && `series-${post.series}`]}>
     <header class:list={["story-hero", { "has-cover": cover }]}>
       {
         cover && (
@@ -114,15 +122,18 @@ const jsonLd = [
         <nav class="breadcrumbs" aria-label="Breadcrumb" data-pagefind-ignore>
           <ol>
             <li><a href={url("/stories/")}>Stories</a></li>
+            {series && <li><a href={url(series.path)}>{series.label}</a></li>}
             {post.country && <li><a href={url(`/places/${slugify(post.country)}/`)}>{post.country}</a></li>}
           </ol>
         </nav>
         {post.draft && <p class="draft-badge static">Draft · only visible in local dev</p>}
+        {series && <p class="eyebrow series-eyebrow">{series.label} · No. {post.seriesNo}</p>}
         <h1 data-pagefind-meta="title">{post.title}</h1>
         {post.entry.data.description && <p class="lede">{post.entry.data.description}</p>}
         <div class="meta" data-pagefind-ignore>
           {where && <span>📍 {where}</span>}
           {tripDates && <span>{tripDates}</span>}
+          {era && <span>🏛 {era}</span>}
           <time datetime={post.date.toISOString()} data-pagefind-meta="date">{formatDate(post.date)}</time>
           {post.updated && post.updated.valueOf() > post.date.valueOf() && (
             <span>Updated <time datetime={post.updated.toISOString()}>{formatDate(post.updated)}</time></span>
@@ -158,6 +169,22 @@ const jsonLd = [
       }
 
       {
+        facts && facts.length > 0 && (
+          <aside class="fact-file" aria-labelledby="fact-file-title">
+            <h2 id="fact-file-title">Fact file</h2>
+            <dl>
+              {facts.map((f) => (
+                <div>
+                  <dt>{f.label}</dt>
+                  <dd>{f.value}</dd>
+                </div>
+              ))}
+            </dl>
+          </aside>
+        )
+      }
+
+      {
         toc.length > 2 && (
           <details class="toc" data-pagefind-ignore>
             <summary>In this story</summary>
@@ -188,7 +215,7 @@ const jsonLd = [
           </button>
           <span class="share-tally" data-share-tally hidden>Shared <b data-count="share">0</b> <span data-share-word>times</span></span>
         </div>
-        <p class="muted">Pass it on to someone planning a trip:</p>
+        <p class="muted">{series ? "Pass it on to someone who loves a good story:" : "Pass it on to someone planning a trip:"}</p>
         <div class="share-row">
           {shareLinks.map((l) => (
             <a class:list={["share-btn", `share-${l.net}`]} href={l.href} target={l.net === "email" ? undefined : "_blank"} rel="noopener" data-share-net={l.net}>{l.label}</a>
@@ -210,13 +237,13 @@ const jsonLd = [
         <nav class="post-nav" aria-label="More stories">
           {older && (
             <a href={url(older.path)} rel="prev">
-              <small>← Previous story</small>
+              <small>{series ? `← ${series.label} No. ${older.seriesNo}` : "← Previous story"}</small>
               {older.title}
             </a>
           )}
           {newer && (
             <a class="next" href={url(newer.path)} rel="next">
-              <small>Next story →</small>
+              <small>{series ? `${series.label} No. ${newer.seriesNo} →` : "Next story →"}</small>
               {newer.title}
             </a>
           )}
@@ -227,7 +254,7 @@ const jsonLd = [
     {
       related.length > 0 && (
         <section class="wrap related" data-pagefind-ignore>
-          <div class="section-title"><h2>More from the road</h2></div>
+          <div class="section-title"><h2>{sameSeries.length && series ? `More from ${series.label}` : "More from the road"}</h2></div>
           <div class="story-grid">{related.map((p) => <StoryCard post={p} heading="h3" />)}</div>
         </section>
       )
