@@ -728,6 +728,15 @@ img {
 .prose pre code {
   font-family: inherit;
 }
+/* Plain-text blocks (copyable templates): theme colours, and wrap long lines. */
+.prose pre[data-language="text"] {
+  color: var(--text) !important;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+.prose pre[data-language="text"] span {
+  color: inherit !important;
+}
 .post-foot {
   margin-top: 48px;
 }
