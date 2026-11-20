@@ -22,6 +22,15 @@ export const SITE = {
   // (free, no account). Keys are "<year>-<slug>-like|love|share". Empty api hides the counts.
   reactions: { api: "https://abacus.jasoncameron.dev", namespace: "wandernotes" },
 
+  // Reader comments on stories, stored in Supabase (see supabase/README.md). All three values are
+  // public. New comments go through the post-comment Edge Function and wait for approval.
+  // Leave supabaseUrl empty to hide the comment section.
+  comments: {
+    supabaseUrl: "https://zizvuvskczprpxlcucyb.supabase.co",
+    anonKey: "sb_publishable_zTUGkgBYh75M6hKRdrUu3A_3s4MJQ_1",
+    turnstileSiteKey: "0x4AAAAAAGK9663CpSw-YoIM",
+  },
+
   // Google AdSense. With only `client` set, Auto ads decides placement.
   // Paste "Display" ad-unit slot IDs below to control placement instead.
   adsense: {

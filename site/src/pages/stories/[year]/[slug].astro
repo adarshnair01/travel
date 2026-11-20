@@ -40,6 +40,8 @@ const pageUrl = absUrl(post.path);
 const og = cover ? await getImage({ src: cover, width: 1200, height: 630, fit: "cover", format: "jpg" }) : undefined;
 const ogImage = og ? new URL(og.src, SITE.origin).href : undefined;
 const reactKey = `${post.year}-${post.slug}`;
+const commentsOn = Boolean(SITE.comments.supabaseUrl && SITE.comments.anonKey);
+const commentsKey = `${import.meta.env.DEV ? "dev/" : ""}${post.year}/${post.slug}`;
 const enc = encodeURIComponent;
 const shareText = `${post.title} ${pageUrl}`;
 const shareLinks = [
@@ -224,6 +226,36 @@ const jsonLd = [
         </div>
       </section>
 
+      {
+        commentsOn && (
+          <section class="comments" id="comments" data-comments data-pagefind-ignore aria-labelledby="comments-title">
+            <h2 id="comments-title">Comments <span data-comment-count></span></h2>
+            <ol class="comment-list" data-comment-list></ol>
+            <p class="muted comment-status" data-comment-status>Loading comments…</p>
+            <form class="comment-form" novalidate>
+              <h3>Leave a comment</h3>
+              <label>
+                Name
+                <input name="name" required maxlength="60" autocomplete="name" />
+              </label>
+              <label>
+                Comment
+                <textarea name="body" required maxlength="2000" rows="5"></textarea>
+              </label>
+              <label class="hp" aria-hidden="true">
+                Website
+                <input name="website" tabindex="-1" autocomplete="off" />
+              </label>
+              <div data-turnstile></div>
+              <div class="comment-actions">
+                <button class="react-btn" type="submit">Post comment</button>
+                <p class="muted" data-form-note role="status" aria-live="polite">Comments are checked before they appear. Please don't share booking IDs, phone numbers or other personal details.</p>
+              </div>
+            </form>
+          </section>
+        )
+      }
+
       <footer class="post-foot" data-pagefind-ignore>
         {
           post.tags.length > 0 && (
@@ -264,8 +296,11 @@ const jsonLd = [
   <button class="icon-btn to-top" type="button" aria-label="Back to top" data-to-top>↑</button>
   <div class="toast" role="status" aria-live="polite"></div>
   <script is:inline type="application/json" id="post-config" set:html={JSON.stringify({ title: post.title, url: pageUrl, react: SITE.reactions.api ? { api: SITE.reactions.api, ns: import.meta.env.DEV ? `${SITE.reactions.namespace}-dev` : SITE.reactions.namespace, key: reactKey } : null })} />
+  {commentsOn && <script is:inline type="application/json" id="comments-config" set:html={JSON.stringify({ url: SITE.comments.supabaseUrl, key: SITE.comments.anonKey, turnstile: SITE.comments.turnstileSiteKey, post: commentsKey })} />}
   <script>
     import { initPost } from "../../../lib/post-client";
+    import { initComments } from "../../../lib/comments-client";
     initPost();
+    initComments();
   </script>
 </Base>

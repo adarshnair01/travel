@@ -1568,3 +1568,112 @@ kbd {
   color: var(--accent-2);
   margin: 0.6em 0 0.2em;
 }
+
+/* Reader comments (Supabase; see supabase/README.md) */
+.comments {
+  margin: 32px 0 8px;
+  padding: 22px 20px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--bg-elev);
+}
+.comments h2 {
+  margin: 0 0 14px;
+  font-family: var(--display);
+  font-size: 1.35rem;
+}
+.comments h2 span {
+  color: var(--muted);
+  font-size: 0.85em;
+}
+.comment-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.comment {
+  padding: 14px 0;
+  border-top: 1px solid var(--line);
+}
+.comment:first-child {
+  border-top: 0;
+  padding-top: 0;
+}
+.comment-head {
+  margin: 0 0 6px;
+  font-size: 14px;
+  color: var(--muted);
+}
+.comment-head b {
+  color: var(--text);
+  font-weight: 600;
+}
+.comment-body p {
+  margin: 0 0 8px;
+  overflow-wrap: anywhere;
+  white-space: pre-line;
+}
+.comment-status:empty {
+  display: none;
+}
+.comment-form {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+  padding-top: 18px;
+  border-top: 1px solid var(--line);
+}
+.comment-form h3 {
+  margin: 0;
+  font-size: 1.05rem;
+}
+.comment-form label {
+  display: grid;
+  gap: 6px;
+  font-size: 14px;
+  color: var(--text-2);
+}
+.comment-form input,
+.comment-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--text);
+  font: inherit;
+  font-size: 16px;
+}
+.comment-form textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+.comment-form input:focus,
+.comment-form textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+.comment-form .hp {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+.comment-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 14px;
+}
+.comment-actions p {
+  flex: 1 1 240px;
+  margin: 0;
+  font-size: 13px;
+}
+.comment-actions button[disabled] {
+  opacity: 0.6;
+  cursor: progress;
+}

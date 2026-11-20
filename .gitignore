@@ -5,3 +5,6 @@ dist/
 .venv/
 generator/.env
 generator/runs/
+
+# Supabase CLI local state
+supabase/.temp/
