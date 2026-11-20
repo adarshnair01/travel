@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  <url><loc>https://adarshnair.in/</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://adarshnair.in/</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://adarshnair.in/about/</loc></url>
-  <url><loc>https://adarshnair.in/stories/</loc><lastmod>2026-11-12</lastmod></url>
+  <url><loc>https://adarshnair.in/stories/</loc><lastmod>2026-11-19</lastmod></url>
   <url><loc>https://adarshnair.in/stories/page/2/</loc></url>
   <url><loc>https://adarshnair.in/stories/2026/</loc></url>
+  <url><loc>https://adarshnair.in/stories/2026/dubai/</loc><lastmod>2026-11-19</lastmod><image:image><image:loc>https://adarshnair.in/_astro/cover.BUrUAXFw_1AEoVM.jpg</image:loc><image:title>The Dubai skyline with the Burj Khalifa rising far above the towers of Downtown, seen across low-rise neighborhoods</image:title></image:image></url>
   <url><loc>https://adarshnair.in/stories/2026/shani-shingnapur/</loc><lastmod>2026-11-11</lastmod><image:image><image:loc>https://adarshnair.in/_astro/cover.RJL4Nfrp_1aEGBz.jpg</image:loc><image:title>The black stone of Shani, garlanded with flowers, standing on an open-air platform behind steel railings under a blue sign at Shani Shingnapur</image:title></image:image></url>
   <url><loc>https://adarshnair.in/stories/2026/roopkund/</loc><lastmod>2026-11-11</lastmod><image:image><image:loc>https://adarshnair.in/_astro/cover.sJGNrwcg_1uCua8.jpg</image:loc><image:title>Roopkund lake, a small green glacial pool surrounded by grey scree and patches of snow high in the Himalayas</image:title></image:image></url>
   <url><loc>https://adarshnair.in/stories/2026/morocco-eclipse/</loc><lastmod>2026-11-11</lastmod><image:image><image:loc>https://adarshnair.in/_astro/cover.DHQ67ACv_ZY0B09.jpg</image:loc><image:title>The blue houses of Chefchaouen spread across a green hillside in the Rif Mountains of northern Morocco</image:title></image:image></url>
@@ -30,6 +31,7 @@
   <url><loc>https://adarshnair.in/places/seychelles/</loc></url>
   <url><loc>https://adarshnair.in/places/taiwan/</loc></url>
   <url><loc>https://adarshnair.in/places/thailand/</loc></url>
+  <url><loc>https://adarshnair.in/places/united-arab-emirates/</loc></url>
   <url><loc>https://adarshnair.in/tags/itinerary/</loc></url>
   <url><loc>https://adarshnair.in/tags/beaches/</loc></url>
   <url><loc>https://adarshnair.in/tags/history/</loc></url>
