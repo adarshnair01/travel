@@ -1212,7 +1212,21 @@ kbd {
   content: "";
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgb(0 0 0 / 0.72), rgb(0 0 0 / 0.1) 55%, transparent);
+  /* Dark enough behind the title and lede even on bright, hazy covers. */
+  background: linear-gradient(
+    to top,
+    rgb(0 0 0 / 0.86),
+    rgb(0 0 0 / 0.68) 35%,
+    rgb(0 0 0 / 0.38) 65%,
+    rgb(0 0 0 / 0.12) 90%,
+    rgb(0 0 0 / 0.08)
+  );
+}
+.story-hero.has-cover h1 {
+  text-shadow: 0 2px 18px rgb(0 0 0 / 0.45), 0 1px 3px rgb(0 0 0 / 0.35);
+}
+.story-hero.has-cover :is(.lede, .meta, .breadcrumbs) {
+  text-shadow: 0 1px 8px rgb(0 0 0 / 0.5);
 }
 .story-hero.has-cover .story-hero-text {
   position: relative;
@@ -1221,10 +1235,10 @@ kbd {
   padding-bottom: 40px;
 }
 .story-hero.has-cover :is(.lede, .meta, .breadcrumbs, .breadcrumbs a) {
-  color: rgb(255 255 255 / 0.88);
+  color: rgb(255 255 255 / 0.95);
 }
 .story-hero.has-cover .meta > * + *::before {
-  color: rgb(255 255 255 / 0.5);
+  color: rgb(255 255 255 / 0.6);
 }
 .story-hero .meta {
   font-size: 14px;
