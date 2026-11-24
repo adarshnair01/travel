@@ -41,6 +41,20 @@ jobs:
           npm ci
           npm run build
           touch dist/.nojekyll
+      # Travelator (trip reel maker) lives in its own repo and is published at /travelator/.
+      # It is added after Pagefind runs, so the blog search doesn't index it.
+      - name: Check out Travelator
+        uses: actions/checkout@v4
+        with:
+          repository: adarshnair01/travelator
+          path: travelator
+      - name: Build Travelator into /travelator/
+        working-directory: travelator
+        run: |
+          npm ci
+          npm run build
+          mkdir -p ../site/dist/travelator
+          cp -r dist/. ../site/dist/travelator/
       - name: Deploy
         if: github.event_name != 'pull_request'
         uses: JamesIves/github-pages-deploy-action@v4
